@@ -27,7 +27,7 @@ export default function Hero() {
     >
       {/* Background Image */}
       <Image
-        src="/image/hero.png"
+        src="/image/hero.jpeg"
         alt="Sachin Stone and Article"
         fill
         priority
