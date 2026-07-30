@@ -27,7 +27,7 @@ export default function About() {
         <div className="relative">
 
           <Image
-            src="/image/about.png"
+            src="/image/about.jpeg"
             alt="About Sachin Stone"
             width={700}
             height={700}
