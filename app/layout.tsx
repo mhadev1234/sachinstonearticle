@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -116,6 +117,35 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Script
+  id="schema"
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "Sachin Stone and Article",
+      image: "https://sachinstonearticle.vercel.app/image/logo.png",
+      url: "https://sachinstonearticle.vercel.app",
+      telephone: "+91-9829676595",
+      email: "sudeshsaini244@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Sikandra",
+        addressLocality: "Dausa",
+        addressRegion: "Rajasthan",
+        postalCode: "303326",
+        addressCountry: "IN"
+      },
+      areaServed: "India",
+      description:
+        "Premium Temple Stone Work, Stone Carving, CNC Stone Jali, Murti Making and Architectural Stone Projects across India.",
+      sameAs: [
+        "https://wa.me/919829676595"
+      ]
+    }),
+  }}
+/>
         {children}
       </body>
     </html>
