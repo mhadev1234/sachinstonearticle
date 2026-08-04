@@ -12,19 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sachinstonearticle.vercel.app"),
 
   title:
     "Sachin Stone and Article | Premium Temple Stone Work & Stone Craftsmanship India",
 
-
   description:
     "Sachin Stone and Article is a Rajasthan based stone craftsmanship company providing premium Temple Stone Work, CNC Stone Jali, Murti Making, Stone Carving, Architectural Stone Work, Hotel & Resort Projects and Railway Station Stone Work across India.",
 
-
   keywords: [
-
     "Temple Stone Work India",
     "Rajasthan Stone Work",
     "Stone Carving",
@@ -38,9 +35,7 @@ export const metadata: Metadata = {
     "Railway Station Stone Work",
     "Sachin Stone and Article",
     "Sikandra Dausa Rajasthan",
-
   ],
-
 
   authors: [
     {
@@ -48,53 +43,81 @@ export const metadata: Metadata = {
     },
   ],
 
-
   creator: "Sachin Stone and Article",
 
+  alternates: {
+    canonical: "https://sachinstonearticle.vercel.app",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  verification: {
+    google: "733acbb9effb511c",
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 
   openGraph: {
-
     title:
       "Sachin Stone and Article | Premium Stone Work India",
 
     description:
       "Premium Temple Stone Work, CNC Stone Jali, Murti Making and Architectural Stone Projects across India.",
 
-    siteName:
-      "Sachin Stone and Article",
+    url: "https://sachinstonearticle.vercel.app",
 
-    locale:
-      "en_IN",
+    siteName: "Sachin Stone and Article",
 
-    type:
-      "website",
+    locale: "en_IN",
 
+    type: "website",
+
+    images: [
+      {
+        url: "/image/hero.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Sachin Stone and Article",
+      },
+    ],
   },
 
+  twitter: {
+    card: "summary_large_image",
+    title: "Sachin Stone and Article",
+    description:
+      "Premium Temple Stone Work, CNC Stone Jali, Murti Making & Stone Carving across India.",
+    images: ["/image/hero.jpeg"],
+  },
 };
-
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-
       <body className="min-h-full flex flex-col">
-
         {children}
-
       </body>
-
     </html>
-
   );
-
 }
