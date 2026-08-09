@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../../lib/supabase";
 
 interface GalleryItem {
   id: number;
@@ -12,7 +12,7 @@ interface GalleryItem {
   media_type: string;
 }
 
-export default function Gallery() {
+export default function GalleryPage() {
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -37,18 +37,8 @@ export default function Gallery() {
     setLoading(false);
   }
 
-  // Home page पर केवल 6 latest items
-  const visibleGallery = gallery.slice(0, 6);
-
   function openViewer(index: number) {
-    // visibleGallery का index लेकर original gallery का सही index निकालना
-    const selectedItem = visibleGallery[index];
-
-    const originalIndex = gallery.findIndex(
-      (item) => item.id === selectedItem.id
-    );
-
-    setSelectedIndex(originalIndex);
+    setSelectedIndex(index);
   }
 
   function closeViewer() {
@@ -72,7 +62,6 @@ export default function Gallery() {
     );
   }
 
-  // Keyboard controls
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (selectedIndex === null) return;
@@ -101,10 +90,8 @@ export default function Gallery() {
   }, [selectedIndex]);
 
   return (
-    <section
-      id="gallery"
-      className="bg-black px-6 py-20 text-white md:px-10"
-    >
+    <main className="min-h-screen bg-black px-6 py-20 text-white md:px-10">
+
       <div className="mx-auto max-w-7xl">
 
         {/* Heading */}
@@ -115,9 +102,9 @@ export default function Gallery() {
             Portfolio
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold text-yellow-500 md:text-5xl">
+          <h1 className="mt-6 text-4xl font-bold text-yellow-500 md:text-5xl">
             Our Gallery
-          </h2>
+          </h1>
 
           <div className="mx-auto mt-4 h-1 w-28 rounded-full bg-yellow-500"></div>
 
@@ -129,6 +116,32 @@ export default function Gallery() {
 
         </div>
 
+        {/* Back Home */}
+
+        <div className="mb-10 text-center">
+
+          <a
+            href="/"
+            className="
+              inline-block
+              rounded-full
+              border
+              border-yellow-500
+              px-6
+              py-2
+              text-sm
+              font-semibold
+              text-yellow-400
+              transition
+              hover:bg-yellow-500
+              hover:text-black
+            "
+          >
+            ← Back to Home
+          </a>
+
+        </div>
+
         {/* Loading */}
 
         {loading && (
@@ -137,7 +150,7 @@ export default function Gallery() {
           </div>
         )}
 
-        {/* Empty Gallery */}
+        {/* Empty */}
 
         {!loading && gallery.length === 0 && (
           <div className="py-20 text-center text-gray-400">
@@ -145,158 +158,111 @@ export default function Gallery() {
           </div>
         )}
 
-        {/* Gallery */}
+        {/* Full Gallery */}
 
         {!loading && gallery.length > 0 && (
-          <>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-              {visibleGallery.map((item, index) => (
+            {gallery.map((item, index) => (
 
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => openViewer(index)}
-                  className="
-                    group
-                    overflow-hidden
-                    rounded-3xl
-                    border
-                    border-yellow-500/20
-                    bg-neutral-900
-                    shadow-lg
-                    transition
-                    duration-500
-                    hover:-translate-y-2
-                    hover:border-yellow-500
-                    hover:shadow-yellow-500/20
-                    text-left
-                  "
-                >
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => openViewer(index)}
+                className="
+                  group
+                  overflow-hidden
+                  rounded-3xl
+                  border
+                  border-yellow-500/20
+                  bg-neutral-900
+                  shadow-lg
+                  transition
+                  duration-500
+                  hover:-translate-y-2
+                  hover:border-yellow-500
+                  hover:shadow-yellow-500/20
+                  text-left
+                "
+              >
 
-                  <div className="relative h-72 overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
 
-                    {/* IMAGE */}
+                  {/* Image */}
 
-                    {item.media_type === "image" && (
-                      <img
-                        src={item.image_url}
-                        alt="Sachin Stone and Article stone work"
-                        loading="lazy"
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          transition
-                          duration-700
-                          group-hover:scale-110
-                        "
-                      />
-                    )}
-
-                    {/* VIDEO */}
-
-                    {item.media_type === "video" && (
-                      <video
-                        src={item.image_url}
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          transition
-                          duration-700
-                          group-hover:scale-110
-                        "
-                      />
-                    )}
-
-                    {/* Overlay */}
-
-                    <div
+                  {item.media_type === "image" && (
+                    <img
+                      src={item.image_url}
+                      alt="Sachin Stone and Article stone work"
+                      loading="lazy"
                       className="
-                        absolute
-                        inset-0
-                        bg-black/10
+                        h-full
+                        w-full
+                        object-cover
                         transition
-                        duration-500
-                        group-hover:bg-black/30
+                        duration-700
+                        group-hover:scale-110
                       "
                     />
+                  )}
 
-                    {/* Video Play Icon */}
+                  {/* Video */}
 
-                    {item.media_type === "video" && (
+                  {item.media_type === "video" && (
+                    <video
+                      src={item.image_url}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition
+                        duration-700
+                        group-hover:scale-110
+                      "
+                    />
+                  )}
+
+                  {/* Overlay */}
+
+                  <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/30" />
+
+                  {/* Video Play Icon */}
+
+                  {item.media_type === "video" && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+
                       <div
                         className="
-                          absolute
-                          inset-0
                           flex
+                          h-16
+                          w-16
                           items-center
                           justify-center
+                          rounded-full
+                          border
+                          border-yellow-400
+                          bg-black/60
+                          text-2xl
+                          text-yellow-400
+                          backdrop-blur-sm
                         "
                       >
-                        <div
-                          className="
-                            flex
-                            h-16
-                            w-16
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-yellow-400
-                            bg-black/60
-                            text-2xl
-                            text-yellow-400
-                            backdrop-blur-sm
-                          "
-                        >
-                          ▶
-                        </div>
+                        ▶
                       </div>
-                    )}
 
-                  </div>
+                    </div>
+                  )}
 
-                </button>
+                </div>
 
-              ))}
+              </button>
 
-            </div>
+            ))}
 
-            {/* View More Gallery */}
-
-            {gallery.length > 6 && (
-              <div className="mt-12 text-center">
-
-                <a
-                  href="/gallery"
-                  className="
-                    inline-block
-                    rounded-full
-                    border
-                    border-yellow-500
-                    bg-yellow-500
-                    px-8
-                    py-3
-                    font-semibold
-                    text-black
-                    transition
-                    duration-300
-                    hover:bg-transparent
-                    hover:text-yellow-400
-                  "
-                >
-                  View More Gallery
-                </a>
-
-              </div>
-            )}
-
-          </>
+          </div>
         )}
 
       </div>
@@ -430,8 +396,6 @@ export default function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* Selected Image */}
-
             {gallery[selectedIndex].media_type === "image" && (
               <img
                 src={gallery[selectedIndex].image_url}
@@ -444,8 +408,6 @@ export default function Gallery() {
                 "
               />
             )}
-
-            {/* Selected Video */}
 
             {gallery[selectedIndex].media_type === "video" && (
               <video
@@ -465,9 +427,8 @@ export default function Gallery() {
           </div>
 
         </div>
-
       )}
 
-    </section>
+    </main>
   );
 }

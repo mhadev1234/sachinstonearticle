@@ -1,125 +1,354 @@
-export default function Reviews() {
+"use client";
 
-  const reviews = [
-    {
-      name: "Ramesh Sharma",
-      city: "Jaipur",
-      review:
-        "Excellent temple stone work. The finishing and quality exceeded our expectations.",
-    },
-    {
-      name: "Amit Verma",
-      city: "Lucknow",
-      review:
-        "Professional team with on-time delivery. Highly recommended for CNC stone jali work.",
-    },
-    {
-      name: "Mahesh Patel",
-      city: "Ahmedabad",
-      review:
-        "Very satisfied with the marble temple and stone carving. Premium craftsmanship.",
-    },
-  ];
+import { useEffect, useState } from "react";
+import { Star } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
+interface ReviewItem {
+  id: number;
+  name: string;
+  rating: number;
+  message: string;
+  created_at: string;
+}
 
-  return (
+export default function Review() {
 
-    <section
-      id="reviews"
-      className="bg-black px-6 py-24 text-white"
-    >
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [rating, setRating] = useState(5);
 
-      <div className="mx-auto max-w-7xl">
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [loading, setLoading] = useState(false);
 
 
-        {/* Heading */}
-
-        <div className="text-center">
-
-
-          <p className="text-lg font-bold uppercase tracking-[5px] text-yellow-500">
-            Testimonials
-          </p>
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
 
 
-          <h2 className="mt-4 text-5xl font-bold">
+  async function fetchReviews() {
 
-            What Our
-
-            <span className="text-yellow-500">
-              {" "}Clients Say
-            </span>
-
-          </h2>
-
-
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-400">
-
-            Customer satisfaction is our biggest achievement.
-
-          </p>
+    const { data, error } = await supabase
+      .from("reviews")
+      .select("*")
+      .eq("approved", true)
+      .order("created_at", {
+        ascending: false,
+      })
+      .limit(6);
 
 
-        </div>
+    if(error){
+      console.log(error);
+      return;
+    }
 
 
+    setReviews(data || []);
 
-
-        {/* Reviews Cards */}
-
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-
-
-          {reviews.map((item) => (
-
-            <div
-              key={item.name}
-              className="rounded-3xl border border-yellow-500/20 bg-zinc-900 p-8 transition duration-300 hover:-translate-y-2 hover:border-yellow-500"
-            >
-
-
-              <div className="mb-6 text-3xl text-yellow-500">
-                ⭐⭐⭐⭐⭐
-              </div>
+  }
 
 
 
-              <p className="leading-8 text-gray-300">
-                "{item.review}"
-              </p>
+  async function submitReview(){
+
+
+    if(
+      name.trim()==="" ||
+      message.trim()===""
+    ){
+
+      alert("Please fill all details");
+      return;
+
+    }
+
+
+    setLoading(true);
 
 
 
-              <div className="mt-8 border-t border-yellow-500/20 pt-6">
+    const {error}=await supabase
+    .from("reviews")
+    .insert([
+      {
+        name,
+        rating,
+        message,
+        approved:true,
+      }
+    ]);
 
 
-                <h3 className="text-xl font-bold text-yellow-500">
-                  {item.name}
-                </h3>
+
+    if(error){
+
+      alert(error.message);
+      setLoading(false);
+      return;
+
+    }
 
 
-                <p className="text-gray-400">
-                  {item.city}
-                </p>
+
+    alert("Thank you! Your review has been submitted.");
 
 
-              </div>
+    setName("");
+    setMessage("");
+    setRating(5);
 
 
-            </div>
-
-          ))}
+    fetchReviews();
 
 
-        </div>
+    setLoading(false);
+
+  }
 
 
-      </div>
 
 
-    </section>
+return (
 
-  );
+<section
+id="reviews"
+className="scroll-mt-24 bg-black px-6 py-20 text-white md:px-10"
+>
+
+
+<div className="mx-auto max-w-5xl">
+
+
+<h2 className="text-center text-3xl font-bold">
+Give Your Review
+</h2>
+
+
+<p className="mt-2 text-center text-gray-400">
+Share your experience with Sachin Stone & Article
+</p>
+
+
+
+<div className="mt-8 space-y-5 rounded-xl border border-zinc-700 bg-zinc-900 p-6">
+
+
+
+<input
+
+type="text"
+
+placeholder="Your Name"
+
+value={name}
+
+onChange={(e)=>setName(e.target.value)}
+
+className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
+
+/>
+
+
+
+<textarea
+
+placeholder="Write your review"
+
+value={message}
+
+onChange={(e)=>setMessage(e.target.value)}
+
+className="h-32 w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
+
+/>
+
+
+
+<div>
+
+<p className="mb-2 text-gray-400">
+Rating
+</p>
+
+
+
+<div className="flex gap-2">
+
+
+{[1,2,3,4,5].map((star)=>(
+
+<button
+key={star}
+type="button"
+onClick={()=>setRating(star)}
+>
+
+
+<Star
+
+size={28}
+
+className={
+star<=rating
+?
+"fill-yellow-500 text-yellow-500"
+:
+"text-gray-600"
+}
+
+/>
+
+
+</button>
+
+))}
+
+
+</div>
+
+
+</div>
+
+
+
+
+<button
+
+onClick={submitReview}
+
+disabled={loading}
+
+className="rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-black"
+
+>
+
+{loading ? "Submitting..." : "Submit Review"}
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<div className="mt-16">
+
+
+<h2 className="mb-8 text-center text-3xl font-bold text-yellow-500">
+Customer Reviews
+</h2>
+
+
+
+
+<div className="grid gap-6 md:grid-cols-2">
+
+
+
+{reviews.map((item)=>(
+
+
+<div
+
+key={item.id}
+
+className="rounded-xl border border-zinc-700 bg-zinc-900 p-6"
+
+>
+
+
+<h3 className="text-xl font-semibold">
+{item.name}
+</h3>
+
+
+
+
+<div className="my-3 flex">
+
+
+{[1,2,3,4,5].map((star)=>(
+
+
+<Star
+
+key={star}
+
+size={20}
+
+className={
+star<=item.rating
+?
+"fill-yellow-500 text-yellow-500"
+:
+"text-gray-600"
+}
+
+/>
+
+
+))}
+
+
+</div>
+
+
+
+<p className="text-gray-300">
+{item.message}
+</p>
+
+
+
+</div>
+
+
+))}
+
+
+
+</div>
+
+
+
+
+<div className="mt-10 text-center">
+
+<a
+
+href="/reviews"
+
+className="inline-block rounded-full bg-yellow-500 px-8 py-3 font-semibold text-black transition hover:bg-yellow-400"
+
+>
+
+View More Reviews
+
+</a>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+);
+
+
 }
