@@ -4,10 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen overflow-hidden bg-black"
-    >
+    <section className="relative min-h-screen overflow-hidden bg-black">
       {/* Background Image */}
 
       <Image
@@ -15,159 +12,139 @@ export default function Hero() {
         alt="Sachin Stone & Article"
         fill
         priority
-        className="scale-105 object-cover object-center brightness-110 contrast-105 saturate-110"
+        className="object-cover object-center"
       />
 
       {/* Dark Overlay */}
 
-      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Premium Gradient */}
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/35 to-black/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/45 to-black/95" />
 
       {/* Golden Glow */}
 
-      <div className="absolute left-1/2 top-0 h-160 w-160 -translate-x-1/2 translate-y-0 rounded-full bg-yellow-500/10 blur-[170px]" />
+      <div className="absolute left-1/2 top-1/2 h-105 w-105 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-500/10 blur-[150px]" />
 
-      {/* Content */}
+      {/* Hero Content */}
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-5 py-24 sm:px-8">
+        <div className="mx-auto w-full max-w-6xl text-center">
 
-        <div className="mx-auto max-w-6xl text-center">
+          {/* Premium Welcome */}
 
-          {/* Tag */}
+          <div className="mb-8 mt-10 flex items-center justify-center gap-4 sm:mb-10 sm:mt-14">
+            <span className="h-px w-10 bg-yellow-400/60 sm:w-20" />
 
-          <p className="mb-5 text-[14px] font-semibold uppercase tracking-[6px] text-yellow-400 md:text-[15px]">
-            Rajasthan's Premium Stone Craftsmanship
-          </p>
+            <div className="rounded-full border border-yellow-400/40 bg-black/30 px-6 py-2.5 backdrop-blur-md">
+              <p className="text-[10px] font-medium uppercase tracking-[5px] text-yellow-300 sm:text-xs sm:tracking-[7px]">
+                Crafting Timeless Beauty
+              </p>
+            </div>
 
-          {/* Heading */}
+            <span className="h-px w-10 bg-yellow-400/60 sm:w-20" />
+          </div>
+
+          {/* Brand Name */}
 
           <h1 className="leading-none">
-
-            <span className="block text-6xl font-black text-white drop-shadow-[0_8px_35px_rgba(0,0,0,.8)] md:text-7xl lg:text-8xl">
-              Sachin
+            <span className="block text-5xl font-light tracking-[3px] text-white sm:text-7xl md:text-8xl lg:text-9xl">
+              SACHIN
             </span>
 
-            <span className="mt-2 block text-6xl font-black text-yellow-400 drop-shadow-[0_8px_35px_rgba(250,204,21,.4)] md:text-7xl lg:text-8xl">
-              Stone & Article
+            <span className="mt-4 block whitespace-nowrap text-3xl font-semibold tracking-[1px] text-yellow-400 sm:text-5xl md:text-7xl lg:text-8xl">
+              STONE &amp; ARTICLE
             </span>
-
           </h1>
 
-          {/* Gold Line */}
+          {/* Elegant Gold Divider */}
 
-          <div className="mx-auto mt-6 h-1 w-52 rounded-full bg-linear-to-r from-yellow-300 via-yellow-500 to-yellow-300 shadow-[0_0_30px_rgba(250,204,21,.7)]" />
+          <div className="mx-auto mt-8 flex items-center justify-center gap-4">
+            <span className="h-px w-14 bg-yellow-400/50 sm:w-28" />
 
-          {/* Subtitle */}
+            <span className="h-2.5 w-2.5 rotate-45 border border-yellow-400 bg-yellow-400/20 shadow-[0_0_20px_rgba(250,204,21,0.7)]" />
 
-          <h2 className="mt-8 text-2xl font-bold text-white md:text-4xl">
-            Premium Temple Stone Work
+            <span className="h-px w-14 bg-yellow-400/50 sm:w-28" />
+          </div>
+
+          {/* Tagline */}
+
+          <h2 className="mt-8 text-xl font-medium tracking-[1px] text-white sm:text-3xl md:text-4xl">
+            Where Stone Becomes Art
           </h2>
-
-          <p className="mt-3 text-base font-medium text-yellow-300 md:text-xl">
-            Murti • Stone Carving • CNC Stone Jali
-          </p>
 
           {/* Description */}
 
-          <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-gray-200 md:text-lg">
-            Creating magnificent stone architecture with{" "}
-            <span className="font-bold text-yellow-400">
-              15+ Years Experience
-            </span>{" "}
-            of traditional craftsmanship and modern finishing.
+          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-gray-200 sm:text-base sm:leading-8 md:text-lg">
+            We transform natural stone into timeless expressions of art,
+            elegance and craftsmanship. Every creation is carefully crafted
+            with precision, passion and attention to detail, bringing together
+            traditional artistry and refined design. From beautifully detailed
+            stonework to distinctive architectural creations, our work reflects
+            a commitment to quality, character and lasting beauty.
           </p>
 
-          {/* Buttons */}
+          {/* CTA Buttons */}
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-
-            {/* Get Free Quote */}
-
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contact"
-              className="rounded-xl bg-linear-to-r from-yellow-400 to-yellow-500 px-8 py-4 text-base font-bold text-black shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="w-full max-w-55 rounded-xl bg-yellow-400 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black shadow-[0_10px_35px_rgba(250,204,21,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-300 sm:w-auto"
             >
               Get Free Quote
             </a>
-
-            {/* WhatsApp */}
 
             <a
               href="https://wa.me/917300479168?text=Hello%20Sachin%20Stone%20%26%20Article%2C%20I%20want%20to%20know%20more%20about%20your%20stone%20work."
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xl border-2 border-yellow-400 bg-black/20 px-8 py-4 text-base font-bold text-yellow-400 backdrop-blur-md transition-all duration-300 hover:bg-yellow-400 hover:text-black"
+              className="w-full max-w-55 rounded-xl border border-yellow-400/70 bg-black/30 px-8 py-4 text-sm font-bold uppercase tracking-wide text-yellow-400 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-black sm:w-auto"
             >
               WhatsApp Now
             </a>
-
           </div>
 
-          {/* Premium Stats */}
+          {/* Experience */}
 
-          <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-4">
+          <div className="mx-auto mt-10 flex w-fit items-center gap-5 border-t border-yellow-400/20 pt-5">
+            <div className="text-left">
+              <p className="text-2xl font-semibold text-yellow-400 sm:text-3xl">
+                15+
+              </p>
 
-            {[
-              ["15+", "Years Experience"],
-              ["500+", "Projects Completed"],
-              ["100%", "Quality Work"],
-              ["India", "Service Available"],
-            ].map(([value, label]) => (
+              <p className="text-[9px] uppercase tracking-[3px] text-gray-300 sm:text-xs">
+                Years
+              </p>
+            </div>
 
-              <div
-                key={label}
-                className="rounded-2xl border border-yellow-400/30 bg-white/10 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-yellow-400 hover:bg-white/15"
-              >
+            <span className="h-8 w-px bg-yellow-400/30" />
 
-                <h3 className="text-3xl font-extrabold text-yellow-400">
-                  {value}
-                </h3>
-
-                <p className="mt-2 text-xs tracking-wide text-gray-200 md:text-sm">
-                  {label}
-                </p>
-
-              </div>
-
-            ))}
-
+            <p className="text-left text-[10px] uppercase leading-5 tracking-[2px] text-gray-300 sm:text-xs">
+              Craftsmanship
+              <br />
+              Excellence
+            </p>
           </div>
 
-          {/* Scroll Down */}
+          {/* Discover More */}
 
-          <div className="mt-12 flex justify-center">
+          <a
+            href="#about"
+            className="mt-9 inline-flex flex-col items-center gap-3 text-gray-400 transition-colors duration-300 hover:text-yellow-400"
+          >
+            <span className="text-[9px] uppercase tracking-[4px]">
+              Discover More
+            </span>
 
-            <a
-              href="#about"
-              className="group flex flex-col items-center gap-3 text-gray-300 transition-all duration-300 hover:text-yellow-400"
-            >
-
-              <span className="text-[11px] font-semibold uppercase tracking-[5px]">
-                Scroll Down
-              </span>
-
-              <div className="relative flex h-12 w-7 justify-center rounded-full border-2 border-yellow-400">
-
-                <span className="absolute top-2 h-2 w-2 animate-bounce rounded-full bg-yellow-400" />
-
-              </div>
-
-            </a>
-
-          </div>
-
+            <span className="h-8 w-px bg-linear-to-b from-yellow-400 to-transparent" />
+          </a>
         </div>
-
       </div>
 
       {/* Bottom Fade */}
 
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-black/70" />
-
+      <div className="absolute inset-x-0 bottom-0 h-36 bg-linear-to-t from-black via-black/40 to-transparent" />
     </section>
   );
 }
-
