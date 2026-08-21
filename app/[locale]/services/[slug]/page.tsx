@@ -122,7 +122,7 @@ export async function generateMetadata({
     "Sachin Stone & Article",
   ];
 
-  const metadata: Metadata = {
+  return {
     title,
     description,
     keywords,
@@ -137,7 +137,11 @@ export async function generateMetadata({
       url: canonicalUrl,
       siteName: "Sachin Stone & Article",
       type: "website",
-      locale: locale === "hi" ? "hi_IN" : "en_IN",
+      locale:
+        locale === "hi"
+          ? "hi_IN"
+          : "en_IN",
+
       images: service.image_url
         ? [
             {
@@ -164,8 +168,6 @@ export async function generateMetadata({
       follow: true,
     },
   };
-
-  return metadata;
 }
 
 /* =====================================================
@@ -235,10 +237,7 @@ export default async function ServiceDetailPage({
     });
 
   /* =====================================================
-     MAIN SERVICE IMAGE
-     Priority:
-     1. services.image_url
-     2. Matching gallery image
+     MAIN IMAGE
   ===================================================== */
 
   const mainImage =
@@ -247,7 +246,7 @@ export default async function ServiceDetailPage({
     null;
 
   /* =====================================================
-     DESCRIPTIONS
+     DESCRIPTION
   ===================================================== */
 
   const shortDescription =
@@ -437,7 +436,7 @@ export default async function ServiceDetailPage({
               </a>
 
               <Link
-                href={`/${locale}#contact`}
+                href={`/${locale}/contact`}
                 className="mt-3 flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 px-5 py-3.5 font-semibold text-white transition hover:border-yellow-500 hover:text-yellow-500"
               >
                 <Phone size={19} />
@@ -584,7 +583,7 @@ export default async function ServiceDetailPage({
             </a>
 
             <Link
-              href={`/${locale}#contact`}
+              href={`/${locale}/contact`}
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 px-7 py-3.5 font-semibold text-white transition hover:border-yellow-500 hover:text-yellow-500"
             >
               Contact Us

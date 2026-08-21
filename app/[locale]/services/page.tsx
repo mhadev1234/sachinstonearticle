@@ -48,18 +48,14 @@ export default function ServicesPage() {
           });
 
         if (error) {
-          console.error(
-            "Services Error:",
-            error
-          );
+          console.error("Services Error:", error);
+          setServices([]);
+        } else {
+          setServices(data ?? []);
         }
-
-        setServices(data || []);
       } catch (error) {
-        console.error(
-          "Services Page Error:",
-          error
-        );
+        console.error("Services Page Error:", error);
+        setServices([]);
       } finally {
         setLoading(false);
       }
@@ -92,9 +88,8 @@ export default function ServicesPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-gray-400 sm:text-lg">
-            From traditional temple stone work to
-            precision CNC stone jali and architectural
-            craftsmanship, we create premium stone
+            From traditional temple stone work to precision CNC stone jali
+            and architectural craftsmanship, we create premium stone
             solutions with attention to every detail.
           </p>
 
@@ -107,18 +102,22 @@ export default function ServicesPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
 
+        {/* LOADING */}
+
         {loading ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div
                 key={item}
-                className="h-430px animate-pulse rounded-2xl border border-zinc-800 bg-zinc-950"
+                className="h-100 animate-pulse rounded-2xl border border-zinc-800 bg-zinc-950"
               />
             ))}
 
           </div>
         ) : services.length === 0 ? (
+
+          /* EMPTY */
 
           <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-6 py-20 text-center">
 
@@ -127,13 +126,13 @@ export default function ServicesPage() {
             </h2>
 
             <p className="mt-3 text-gray-500">
-              Our premium stone services will be
-              available here shortly.
+              Our premium stone services will be available here shortly.
             </p>
 
           </div>
-
         ) : (
+
+          /* SERVICE GRID */
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
@@ -144,9 +143,7 @@ export default function ServicesPage() {
                 service.description ||
                 "Premium stone craftsmanship by Sachin Stone & Article.";
 
-              const serviceSlug = makeSlug(
-                service.title
-              );
+              const serviceSlug = makeSlug(service.title);
 
               return (
                 <article
@@ -161,7 +158,7 @@ export default function ServicesPage() {
                     {service.image_url ? (
                       <img
                         src={service.image_url}
-                        alt={service.title}
+                        alt={`${service.title} - Sachin Stone & Article`}
                         loading="lazy"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
@@ -208,7 +205,6 @@ export default function ServicesPage() {
             })}
 
           </div>
-
         )}
 
       </section>
@@ -231,13 +227,12 @@ export default function ServicesPage() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-gray-400">
-            Share your requirements with us and
-            get professional guidance for your
-            stone work project.
+            Share your requirements with us and get professional guidance
+            for your stone work project.
           </p>
 
           <Link
-            href={`/${locale}#contact`}
+            href={`/${locale}/contact`}
             className="mt-8 inline-flex items-center gap-2 rounded-lg bg-yellow-500 px-7 py-3.5 font-bold text-black transition hover:bg-yellow-400"
           >
             Get Free Quote
