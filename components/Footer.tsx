@@ -1,6 +1,13 @@
+ "use client";
+
+import { useTranslations } from "next-intl";
+
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="bg-black px-6 py-12 text-white">
+
       <div className="mx-auto grid max-w-6xl gap-8 text-center md:grid-cols-3 md:text-left">
 
         {/* Company */}
@@ -19,7 +26,7 @@ export default function Footer() {
         {/* Services */}
         <div>
           <h3 className="mb-3 text-xl font-semibold text-yellow-500">
-            Our Services
+            {t("services")}
           </h3>
 
           <ul className="space-y-2 text-gray-300">
@@ -33,7 +40,7 @@ export default function Footer() {
         {/* Contact */}
         <div>
           <h3 className="mb-3 text-xl font-semibold text-yellow-500">
-            Contact
+            {t("contact")}
           </h3>
 
           <p className="text-gray-300">
@@ -56,32 +63,36 @@ export default function Footer() {
             WhatsApp: +91 73004 79168
           </a>
         </div>
+
       </div>
 
-      {/* Bottom */}
       <div className="mt-10 border-t border-gray-700 pt-5 text-center">
 
         <div className="mb-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+
           <a
             href="/privacy-policy"
             className="text-gray-400 transition hover:text-yellow-400"
           >
-            Privacy Policy
+            {t("privacy")}
           </a>
 
           <a
             href="/terms"
             className="text-gray-400 transition hover:text-yellow-400"
           >
-            Terms & Conditions
+            {t("terms")}
           </a>
+
         </div>
 
         <p className="text-gray-400">
-          © {new Date().getFullYear()} Sachin Stone & Article. All Rights Reserved.
+          © {new Date().getFullYear()} Sachin Stone & Article.{" "}
+          {t("rights")}
         </p>
 
       </div>
+
     </footer>
   );
 }

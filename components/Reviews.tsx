@@ -1,7 +1,8 @@
-"use client";
+ "use client";
 
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { supabase } from "../lib/supabase";
 
 interface ReviewItem {
@@ -13,6 +14,7 @@ interface ReviewItem {
 }
 
 export default function Review() {
+  const t = useTranslations("Review");
 
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -21,15 +23,11 @@ export default function Review() {
   const [reviews, setReviews] = useState<ReviewItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     fetchReviews();
   }, []);
 
-
-
   async function fetchReviews() {
-
     const { data, error } = await supabase
       .from("reviews")
       .select("*")
@@ -39,316 +37,175 @@ export default function Review() {
       })
       .limit(6);
 
-
-    if(error){
+    if (error) {
       console.log(error);
       return;
     }
 
-
     setReviews(data || []);
-
   }
 
-
-
-  async function submitReview(){
-
-
-    if(
-      name.trim()==="" ||
-      message.trim()===""
-    ){
-
+  async function submitReview() {
+    if (
+      name.trim() === "" ||
+      message.trim() === ""
+    ) {
       alert("Please fill all details");
       return;
-
     }
-
 
     setLoading(true);
 
+    const { error } = await supabase
+      .from("reviews")
+      .insert([
+        {
+          name,
+          rating,
+          message,
+          approved: true,
+        },
+      ]);
 
-
-    const {error}=await supabase
-    .from("reviews")
-    .insert([
-      {
-        name,
-        rating,
-        message,
-        approved:true,
-      }
-    ]);
-
-
-
-    if(error){
-
+    if (error) {
       alert(error.message);
       setLoading(false);
       return;
-
     }
 
-
-
     alert("Thank you! Your review has been submitted.");
-
 
     setName("");
     setMessage("");
     setRating(5);
 
-
     fetchReviews();
 
-
     setLoading(false);
-
   }
 
-
-
-
-return (
-
-<section
-id="reviews"
-className="scroll-mt-24 bg-black px-6 py-20 text-white md:px-10"
->
-
-
-<div className="mx-auto max-w-5xl">
-
-
-<h2 className="text-center text-3xl font-bold">
-Give Your Review
-</h2>
-
-
-<p className="mt-2 text-center text-gray-400">
-Share your experience with Sachin Stone & Article
-</p>
-
-
-
-<div className="mt-8 space-y-5 rounded-xl border border-zinc-700 bg-zinc-900 p-6">
-
-
-
-<input
-
-type="text"
-
-placeholder="Your Name"
-
-value={name}
-
-onChange={(e)=>setName(e.target.value)}
-
-className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
-
-/>
-
-
-
-<textarea
-
-placeholder="Write your review"
-
-value={message}
-
-onChange={(e)=>setMessage(e.target.value)}
-
-className="h-32 w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
-
-/>
-
-
-
-<div>
-
-<p className="mb-2 text-gray-400">
-Rating
-</p>
-
-
-
-<div className="flex gap-2">
-
-
-{[1,2,3,4,5].map((star)=>(
-
-<button
-key={star}
-type="button"
-onClick={()=>setRating(star)}
->
-
-
-<Star
-
-size={28}
-
-className={
-star<=rating
-?
-"fill-yellow-500 text-yellow-500"
-:
-"text-gray-600"
-}
-
-/>
-
-
-</button>
-
-))}
-
-
-</div>
-
-
-</div>
-
-
-
-
-<button
-
-onClick={submitReview}
-
-disabled={loading}
-
-className="rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-black"
-
->
-
-{loading ? "Submitting..." : "Submit Review"}
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-<div className="mt-16">
-
-
-<h2 className="mb-8 text-center text-3xl font-bold text-yellow-500">
-Customer Reviews
-</h2>
-
-
-
-
-<div className="grid gap-6 md:grid-cols-2">
-
-
-
-{reviews.map((item)=>(
-
-
-<div
-
-key={item.id}
-
-className="rounded-xl border border-zinc-700 bg-zinc-900 p-6"
-
->
-
-
-<h3 className="text-xl font-semibold">
-{item.name}
-</h3>
-
-
-
-
-<div className="my-3 flex">
-
-
-{[1,2,3,4,5].map((star)=>(
-
-
-<Star
-
-key={star}
-
-size={20}
-
-className={
-star<=item.rating
-?
-"fill-yellow-500 text-yellow-500"
-:
-"text-gray-600"
-}
-
-/>
-
-
-))}
-
-
-</div>
-
-
-
-<p className="text-gray-300">
-{item.message}
-</p>
-
-
-
-</div>
-
-
-))}
-
-
-
-</div>
-
-
-
-
-<div className="mt-10 text-center">
-
-<a
-
-href="/reviews"
-
-className="inline-block rounded-full bg-yellow-500 px-8 py-3 font-semibold text-black transition hover:bg-yellow-400"
-
->
-
-View More Reviews
-
-</a>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-);
-
-
+  return (
+    <section
+      id="reviews"
+      className="bg-black px-6 py-24 text-white"
+    >
+      <div className="mx-auto max-w-7xl">
+
+        <div className="text-center">
+
+          <p className="text-lg font-bold uppercase tracking-[5px] text-yellow-500">
+            {t("heading")}
+          </p>
+
+          <h2 className="mt-4 text-5xl font-bold">
+            {t("customerReviews")}
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-3xl text-gray-400">
+            {t("description")}
+          </p>
+
+        </div>
+
+        <div className="mx-auto mt-12 max-w-3xl rounded-3xl border border-yellow-500/20 bg-zinc-950 p-8">
+
+          <input
+            type="text"
+            placeholder={t("name")}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
+          />
+
+          <textarea
+            placeholder={t("message")}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="mt-4 h-32 w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white"
+          />
+
+          <div className="mt-5 flex items-center gap-2">
+
+            <span className="mr-3 text-gray-400">
+              {t("rating")}
+            </span>
+
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                type="button"
+                onClick={() => setRating(star)}
+              >
+                <Star
+                  size={28}
+                  className={
+                    star <= rating
+                      ? "fill-yellow-500 text-yellow-500"
+                      : "text-gray-600"
+                  }
+                />
+              </button>
+            ))}
+
+          </div>
+
+          <button
+            onClick={submitReview}
+            disabled={loading}
+            className="mt-6 rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-black"
+          >
+            {loading ? t("submitting") : t("submit")}
+          </button>
+
+        </div>
+
+        {reviews.length > 0 && (
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            {reviews.map((item) => (
+              <div
+                key={item.id}
+                className="rounded-xl border border-zinc-700 bg-zinc-900 p-6"
+              >
+
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={star}
+                      size={20}
+                      className={
+                        star <= item.rating
+                          ? "fill-yellow-500 text-yellow-500"
+                          : "text-gray-600"
+                      }
+                    />
+                  ))}
+                </div>
+
+                <h3 className="mt-4 text-xl font-bold text-yellow-500">
+                  {item.name}
+                </h3>
+
+                <p className="mt-3 leading-7 text-gray-300">
+                  {item.message}
+                </p>
+
+              </div>
+            ))}
+
+          </div>
+        )}
+
+        <div className="mt-12 text-center">
+          <a
+            href="/reviews"
+            className="inline-block rounded-full bg-yellow-500 px-8 py-3 font-semibold text-black transition hover:bg-yellow-400"
+          >
+            {t("viewMore")}
+          </a>
+        </div>
+
+      </div>
+    </section>
+  );
 }

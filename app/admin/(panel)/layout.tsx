@@ -18,6 +18,22 @@ export default function AdminPanelLayout({
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    async function checkUser() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        setLoggedIn(false);
+        setChecking(false);
+        router.replace("/admin/login");
+        return;
+      }
+
+      setLoggedIn(true);
+      setChecking(false);
+    }
+
     checkUser();
 
     const {
@@ -25,14 +41,13 @@ export default function AdminPanelLayout({
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT" || !session) {
         setLoggedIn(false);
+        setChecking(false);
         router.replace("/admin/login");
         return;
       }
 
-      if (session) {
-        setLoggedIn(true);
-        setChecking(false);
-      }
+      setLoggedIn(true);
+      setChecking(false);
     });
 
     return () => {
@@ -40,25 +55,11 @@ export default function AdminPanelLayout({
     };
   }, [router]);
 
-  async function checkUser() {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session) {
-      router.replace("/admin/login");
-      return;
-    }
-
-    setLoggedIn(true);
-    setChecking(false);
-  }
-
   if (checking) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-black text-yellow-500">
-        Checking login...
-      </div>
+      <main className="flex min-h-screen items-center justify-center bg-black">
+        <p className="text-yellow-500">Checking login...</p>
+      </main>
     );
   }
 
@@ -67,7 +68,7 @@ export default function AdminPanelLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-black">
+    <div className="flex min-h-screen bg-black text-white">
       {/* Sidebar */}
       <AdminSidebar />
 

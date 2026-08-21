@@ -1,26 +1,34 @@
+ "use client";
+
+import { useTranslations } from "next-intl";
+
 export default function Contact() {
+  const t = useTranslations("Contact");
+
   return (
     <section
       id="contact"
       className="bg-zinc-950 px-6 py-24 text-white"
     >
       <div className="mx-auto max-w-7xl">
+
         <div className="text-center">
+
           <p className="text-lg font-bold uppercase tracking-[5px] text-yellow-500">
-            Contact Us
+            {t("heading")}
           </p>
 
           <h2 className="mt-6 text-5xl font-bold">
-            Let's Build Your{" "}
+            {t("titleFirst")}{" "}
             <span className="text-yellow-500">
-              Dream Project
+              {t("titleHighlight")}
             </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-400">
-            Contact us for temple stone work, stone carving, CNC jali,
-            murti making and architectural stone projects.
+            {t("description")}
           </p>
+
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-4">
@@ -32,7 +40,7 @@ export default function Contact() {
             <div className="text-5xl">📞</div>
 
             <h3 className="mt-5 text-2xl font-bold text-yellow-500">
-              Call Us
+              {t("call")}
             </h3>
 
             <p className="mt-3 text-gray-400">
@@ -49,7 +57,7 @@ export default function Contact() {
             <div className="text-5xl">💬</div>
 
             <h3 className="mt-5 text-2xl font-bold text-yellow-500">
-              WhatsApp
+              {t("whatsapp")}
             </h3>
 
             <p className="mt-3 text-gray-400">
@@ -58,24 +66,21 @@ export default function Contact() {
           </a>
 
           <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=sudeshsaini244@gmail.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="rounded-3xl border border-yellow-500/20 bg-black p-8 text-center transition hover:border-yellow-500"
->
-  <div className="text-5xl">
-    ✉️
-  </div>
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=sudeshsaini244@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-3xl border border-yellow-500/20 bg-black p-8 text-center transition hover:border-yellow-500"
+          >
+            <div className="text-5xl">✉️</div>
 
-  <h3 className="mt-5 text-2xl font-bold text-yellow-500">
-    Email
-  </h3>
+            <h3 className="mt-5 text-2xl font-bold text-yellow-500">
+              {t("email")}
+            </h3>
 
-  <p className="mt-3 break-all text-gray-400">
-    sudeshsaini244@gmail.com
-  </p>
-</a>
-            
+            <p className="mt-3 break-all text-gray-400">
+              sudeshsaini244@gmail.com
+            </p>
+          </a>
 
           <a
             href="https://www.google.com/maps/search/?api=1&query=Sikandra%2C+Dausa%2C+Rajasthan%2C+India"
@@ -86,7 +91,7 @@ export default function Contact() {
             <div className="text-5xl">📍</div>
 
             <h3 className="mt-5 text-2xl font-bold text-yellow-500">
-              Location
+              {t("location")}
             </h3>
 
             <p className="mt-3 text-gray-400">
@@ -94,11 +99,12 @@ export default function Contact() {
             </p>
 
             <p className="mt-3 text-sm text-yellow-500">
-              Open in Google Maps →
+              {t("openMaps")}
             </p>
           </a>
 
         </div>
+
       </div>
     </section>
   );

@@ -127,7 +127,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body>
+      <body className="min-h-full bg-black">
         <Script
           id="local-business-schema"
           type="application/ld+json"

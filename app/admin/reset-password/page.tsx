@@ -9,7 +9,6 @@ export default function ResetPasswordPage() {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
   const [error, setError] = useState("");
@@ -17,8 +16,8 @@ export default function ResetPasswordPage() {
   useEffect(() => {
     let mounted = true;
 
-    async function checkRecoverySession() {
-      // Supabase recovery session check
+    const checkRecoverySession = async () => {
+      // First check whether Supabase already created a session
       const {
         data: { session },
       } = await supabase.auth.getSession();
@@ -30,20 +29,22 @@ export default function ResetPasswordPage() {
         return;
       }
 
-      // Listen for password recovery event
+      // Listen for the PASSWORD_RECOVERY event
       const {
         data: { subscription },
-      } = supabase.auth.onAuthStateChange((event, session) => {
-        if (!mounted) return;
+      } = supabase.auth.onAuthStateChange(
+        (event, session) => {
+          if (!mounted) return;
 
-        if (event === "PASSWORD_RECOVERY" && session) {
-          setError("");
-          setChecking(false);
+          if (event === "PASSWORD_RECOVERY" && session) {
+            setError("");
+            setChecking(false);
+          }
         }
-      });
+      );
 
-      // Give Supabase time to process the recovery URL
-      setTimeout(async () => {
+      // Give Supabase a little time to process the URL
+      const timer = setTimeout(async () => {
         if (!mounted) return;
 
         const {
@@ -59,12 +60,13 @@ export default function ResetPasswordPage() {
         }
 
         setChecking(false);
-      }, 1500);
+      }, 3000);
 
       return () => {
+        clearTimeout(timer);
         subscription.unsubscribe();
       };
-    }
+    };
 
     checkRecoverySession();
 
@@ -73,7 +75,7 @@ export default function ResetPasswordPage() {
     };
   }, []);
 
-  async function updatePassword(e: React.FormEvent) {
+  async function updatePassword(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     setError("");
@@ -95,12 +97,13 @@ export default function ResetPasswordPage() {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.updateUser({
-      password,
-    });
+    const { error: updateError } =
+      await supabase.auth.updateUser({
+        password,
+      });
 
-    if (error) {
-      setError(error.message);
+    if (updateError) {
+      setError(updateError.message);
       setLoading(false);
       return;
     }
@@ -114,25 +117,28 @@ export default function ResetPasswordPage() {
 
   if (checking) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-black px-6">
-        <p className="text-yellow-500">
-          Checking reset link...
-        </p>
+      <main className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-zinc-700 border-t-yellow-500" />
+
+          <p className="text-gray-400">
+            Checking reset link...
+          </p>
+        </div>
       </main>
     );
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-black px-6">
-      <div className="w-full max-w-md rounded-2xl border border-yellow-500/30 bg-zinc-900 p-8 shadow-2xl">
-
+    <main className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
+      <div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-950 p-8 shadow-xl">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-yellow-500">
             Reset Password
           </h1>
 
           <p className="mt-2 text-gray-400">
-            Sachin Stone & Article
+            Sachin Stone &amp; Article
           </p>
         </div>
 
@@ -144,7 +150,9 @@ export default function ResetPasswordPage() {
 
             <button
               type="button"
-              onClick={() => router.replace("/admin/login")}
+              onClick={() =>
+                router.replace("/admin/login")
+              }
               className="w-full rounded-lg bg-yellow-500 px-4 py-3 font-semibold text-black transition hover:bg-yellow-400"
             >
               Back to Login
@@ -163,7 +171,9 @@ export default function ResetPasswordPage() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  setPassword(e.target.value)
+                }
                 placeholder="New Password"
                 required
                 className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white outline-none focus:border-yellow-500"
@@ -178,7 +188,9 @@ export default function ResetPasswordPage() {
               <input
                 type="password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) =>
+                  setConfirmPassword(e.target.value)
+                }
                 placeholder="Confirm Password"
                 required
                 className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white outline-none focus:border-yellow-500"
@@ -190,7 +202,9 @@ export default function ResetPasswordPage() {
               disabled={loading}
               className="w-full rounded-lg bg-yellow-500 px-4 py-3 font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Updating..." : "Update Password"}
+              {loading
+                ? "Updating..."
+                : "Update Password"}
             </button>
           </form>
         )}
@@ -198,3 +212,4 @@ export default function ResetPasswordPage() {
     </main>
   );
 }
+

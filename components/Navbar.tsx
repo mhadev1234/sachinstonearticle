@@ -1,27 +1,41 @@
-"use client";
+ "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+
+const navLinks = [
+  { name: "Home", href: "/en" },
+  { name: "About", href: "/en/about" },
+  { name: "Services", href: "/en/services" },
+  { name: "Gallery", href: "/en/gallery" },
+  { name: "Reviews", href: "/en/reviews" },
+  { name: "Contact", href: "/en/contact" },
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full border-b border-yellow-500/20 bg-black/90 backdrop-blur-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-500/20 bg-black/90 backdrop-blur-md">
+      
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8">
 
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-
+        {/* LOGO */}
+        <Link
+          href="/en"
+          onClick={() => setMenuOpen(false)}
+          className="flex items-center gap-3"
+        >
           <div className="overflow-hidden rounded-full border-2 border-yellow-500">
             <Image
               src="/image/logo.png"
               alt="Sachin Stone and Article"
-              width={48}
-              height={48}
-              className="h-12 w-12 md:h-16 md:w-16"
+              width={52}
+              height={52}
               priority
+              className="h-12 w-12 object-cover md:h-14 md:w-14"
             />
           </div>
 
@@ -34,122 +48,70 @@ export default function Navbar() {
               & Article
             </p>
           </div>
+        </Link>
 
+        {/* DESKTOP NAV */}
+        <div className="hidden lg:flex lg:items-center lg:gap-7">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-white transition hover:text-yellow-500"
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden items-center gap-8 text-white md:flex">
+        {/* DESKTOP QUOTE */}
+        <div className="hidden lg:block">
+          <Link
+            href="/en/contact"
+            className="rounded-full bg-yellow-500 px-5 py-2.5 font-semibold text-black transition hover:bg-yellow-400"
+          >
+            Get Free Quote
+          </Link>
+        </div>
 
-          <li>
-            <a href="#home" className="transition hover:text-yellow-500">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <a href="#about" className="transition hover:text-yellow-500">
-              About
-            </a>
-          </li>
-
-          <li>
-            <a href="#services" className="transition hover:text-yellow-500">
-              Services
-            </a>
-          </li>
-
-          <li>
-            <a href="#gallery" className="transition hover:text-yellow-500">
-              Gallery
-            </a>
-          </li>
-
-          <li>
-            <a href="#reviews" className="transition hover:text-yellow-500">
-              Reviews
-            </a>
-          </li>
-
-          <li>
-            <a href="#contact" className="transition hover:text-yellow-500">
-              Contact
-            </a>
-          </li>
-
-        </ul>
-
-        {/* Desktop Button */}
-        <a
-          href="#enquiry"
-          className="hidden rounded-full bg-yellow-500 px-6 py-2 font-semibold text-black transition hover:bg-yellow-400 md:block"
-        >
-          Get Quote
-        </a>
-
-        {/* Mobile Menu Button */}
+        {/* MOBILE MENU BUTTON */}
         <button
+          type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-3xl text-yellow-500 md:hidden"
+          className="flex items-center justify-center text-3xl text-yellow-500 lg:hidden"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <HiX /> : <HiMenu />}
         </button>
-
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="border-t border-yellow-500/20 bg-black md:hidden">
+        <div className="border-t border-yellow-500/20 bg-black lg:hidden">
+          <div className="mx-auto max-w-7xl px-6 py-6">
+            <div className="flex flex-col items-center gap-5">
 
-          <ul className="flex flex-col items-center gap-5 py-6 text-white">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-base font-medium text-white transition hover:text-yellow-500"
+                >
+                  {link.name}
+                </Link>
+              ))}
 
-            <li>
-              <a href="#home" onClick={() => setMenuOpen(false)}>
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="#about" onClick={() => setMenuOpen(false)}>
-                About
-              </a>
-            </li>
-
-            <li>
-              <a href="#services" onClick={() => setMenuOpen(false)}>
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="#gallery" onClick={() => setMenuOpen(false)}>
-                Gallery
-              </a>
-            </li>
-
-            <li>
-              <a href="#reviews" onClick={() => setMenuOpen(false)}>
-                Reviews
-              </a>
-            </li>
-
-            <li>
-              <a href="#contact" onClick={() => setMenuOpen(false)}>
-                Contact
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#enquiry"
+              <Link
+                href="/en/contact"
                 onClick={() => setMenuOpen(false)}
-                className="rounded-full bg-yellow-500 px-6 py-2 font-semibold text-black"
+                className="mt-2 rounded-full bg-yellow-500 px-7 py-2.5 font-semibold text-black transition hover:bg-yellow-400"
               >
-                Get Quote
-              </a>
-            </li>
+                Get Free Quote
+              </Link>
 
-          </ul>
-
+            </div>
+          </div>
         </div>
       )}
     </nav>
