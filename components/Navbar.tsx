@@ -16,13 +16,13 @@ const languages = [
 ];
 
 const navLinks = [
-  { key: "home", href: "/#home" },
+  { key: "home", href: "/" },
   { key: "about", href: "/about" },
   { key: "services", href: "/services" },
   { key: "products", href: "/products" },
-  { key: "gallery", href: "/#gallery" },
-  { key: "reviews", href: "/#reviews" },
-  { key: "contact", href: "/#contact" },
+  { key: "gallery", href: "/gallery" },
+  { key: "reviews", href: "/reviews" },
+  { key: "contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -31,7 +31,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
-
   const t = useTranslations("Navbar");
 
   function changeLanguage(language: string) {
@@ -45,14 +44,12 @@ export default function Navbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-500/20 bg-black/90 backdrop-blur-md">
 
-      {/* MAIN NAVBAR */}
-
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8">
 
         {/* LOGO */}
 
         <Link
-          href="/#home"
+          href="/"
           onClick={() => setMenuOpen(false)}
           className="flex items-center gap-3"
         >
@@ -81,39 +78,30 @@ export default function Navbar() {
         {/* DESKTOP MENU */}
 
         <ul className="hidden items-center gap-5 text-white lg:flex">
-
           {navLinks.map((link) => (
             <li key={link.key}>
-
               <Link
                 href={link.href}
                 className="font-medium transition hover:text-yellow-500"
               >
                 {t(link.key)}
               </Link>
-
             </li>
           ))}
-
         </ul>
 
         {/* DESKTOP RIGHT */}
 
         <div className="hidden items-center gap-4 md:flex">
 
-          {/* LANGUAGE */}
-
           <div className="flex items-center gap-2">
-
             <span className="text-sm font-medium text-white">
               {t("language")}:
             </span>
 
             <select
               value={locale}
-              onChange={(e) =>
-                changeLanguage(e.target.value)
-              }
+              onChange={(e) => changeLanguage(e.target.value)}
               aria-label={t("language")}
               className="rounded-lg border border-yellow-500/40 bg-black px-2 py-2 text-sm text-white outline-none"
             >
@@ -127,80 +115,53 @@ export default function Navbar() {
                 </option>
               ))}
             </select>
-
           </div>
 
-          {/* GET QUOTE */}
-
           <Link
-            href="/#enquiry"
+            href="/contact"
             className="rounded-full bg-yellow-500 px-5 py-2 font-semibold text-black transition hover:bg-yellow-400"
           >
             {t("getQuote")}
           </Link>
-
         </div>
 
-        {/* MOBILE RIGHT */}
+        {/* MOBILE */}
 
         <div className="flex items-center gap-3 lg:hidden">
 
-          {/* MOBILE LANGUAGE */}
-
-          <div className="flex items-center gap-1">
-
-            <span className="hidden text-xs font-medium text-white sm:block">
-              {t("language")}:
-            </span>
-
-            <select
-              value={locale}
-              onChange={(e) =>
-                changeLanguage(e.target.value)
-              }
-              aria-label={t("language")}
-              className="rounded-lg border border-yellow-500/40 bg-black px-2 py-2 text-xs text-white outline-none"
-            >
-              {languages.map((language) => (
-                <option
-                  key={language.code}
-                  value={language.code}
-                  className="bg-black text-white"
-                >
-                  {language.name}
-                </option>
-              ))}
-            </select>
-
-          </div>
-
-          {/* MOBILE MENU BUTTON */}
+          <select
+            value={locale}
+            onChange={(e) => changeLanguage(e.target.value)}
+            aria-label={t("language")}
+            className="rounded-lg border border-yellow-500/40 bg-black px-2 py-2 text-xs text-white outline-none"
+          >
+            {languages.map((language) => (
+              <option
+                key={language.code}
+                value={language.code}
+                className="bg-black text-white"
+              >
+                {language.name}
+              </option>
+            ))}
+          </select>
 
           <button
             type="button"
-            onClick={() =>
-              setMenuOpen(!menuOpen)
-            }
+            onClick={() => setMenuOpen(!menuOpen)}
             className="flex items-center justify-center text-3xl text-yellow-500"
-            aria-label={
-              menuOpen
-                ? "Close menu"
-                : "Open menu"
-            }
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
             {menuOpen ? <HiX /> : <HiMenu />}
           </button>
-
         </div>
-
       </div>
 
       {/* MOBILE MENU */}
 
       {menuOpen && (
         <div className="border-t border-yellow-500/20 bg-black lg:hidden">
-
           <ul className="flex flex-col items-center gap-4 px-6 py-6 text-white">
 
             {navLinks.map((link) => (
@@ -208,41 +169,29 @@ export default function Navbar() {
                 key={link.key}
                 className="w-full text-center"
               >
-
                 <Link
                   href={link.href}
-                  onClick={() =>
-                    setMenuOpen(false)
-                  }
-                  className="block py-2 font-medium transition hover:text-yellow-500"
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-lg py-2 font-medium transition hover:bg-yellow-500/10 hover:text-yellow-500"
                 >
                   {t(link.key)}
                 </Link>
-
               </li>
             ))}
 
-            {/* MOBILE GET QUOTE */}
-
             <li className="pt-2">
-
               <Link
-                href="/#enquiry"
-                onClick={() =>
-                  setMenuOpen(false)
-                }
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
                 className="inline-block rounded-full bg-yellow-500 px-7 py-3 font-semibold text-black transition hover:bg-yellow-400"
               >
                 {t("getQuote")}
               </Link>
-
             </li>
 
           </ul>
-
         </div>
       )}
-
     </nav>
   );
 }

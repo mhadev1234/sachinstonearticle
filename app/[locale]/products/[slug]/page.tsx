@@ -36,152 +36,133 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
-  const typedProduct = product as Product;
-
-  const whatsappMessage = encodeURIComponent(
-    `Hello Sachin Stone & Article, I am interested in ${typedProduct.name}. Please share more details and quotation.`
-  );
+  const item = product as Product;
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="border-b border-white/10 bg-zinc-950 px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl">
+    <main className="min-h-screen bg-black px-5 py-24 text-white sm:px-8">
+      <div className="mx-auto max-w-6xl">
 
+        {/* Back */}
+        <div className="mb-8">
           <Link
             href={`/${locale}/products`}
-            className="mb-8 inline-block text-sm font-medium text-yellow-500 transition hover:text-yellow-400"
+            className="inline-flex items-center rounded-lg border border-yellow-500/50 px-5 py-2.5 text-sm font-semibold text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
           >
             ← Back to Products
           </Link>
+        </div>
 
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        {/* Product */}
+        <div className="grid overflow-hidden rounded-3xl border border-yellow-500/20 bg-zinc-950 lg:grid-cols-2">
 
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-900">
-              <div className="aspect-4/3">
-                {typedProduct.image_url ? (
-                  <img
-                    src={typedProduct.image_url}
-                    alt={typedProduct.name}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-gray-500">
-                    Image Coming Soon
-                  </div>
-                )}
+          {/* Image */}
+          <div className="relative min-h-87.5 bg-zinc-900 lg:min-h-150">
+
+            {item.image_url ? (
+              <img
+                src={item.image_url}
+                alt={item.name}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-full min-h-87.5 items-center justify-center text-gray-500 lg:min-h-150">
+                Image Coming Soon
               </div>
+            )}
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
+
+            {/* Featured */}
+            {item.featured && (
+              <span className="absolute left-5 top-5 rounded-full bg-yellow-500 px-4 py-2 text-xs font-bold uppercase tracking-wide text-black">
+                Featured
+              </span>
+            )}
+          </div>
+
+          {/* Content */}
+          <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-14">
+
+            {/* Category */}
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-500">
+              {item.category}
+            </p>
+
+            {/* Name */}
+            <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+              {item.name}
+            </h1>
+
+            {/* Divider */}
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-px w-16 bg-yellow-500" />
+              <span className="h-2 w-2 rotate-45 bg-yellow-500" />
+              <span className="h-px w-16 bg-yellow-500/40" />
             </div>
 
-            <div>
+            {/* Description */}
+            {item.description ? (
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold text-yellow-500">
+                  Product Details
+                </h2>
 
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-500">
-                {typedProduct.category}
-              </p>
-
-              {typedProduct.featured && (
-                <span className="mt-4 inline-block rounded-full bg-yellow-500 px-4 py-1.5 text-xs font-bold text-black">
-                  Featured Product
-                </span>
-              )}
-
-              <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
-                {typedProduct.name}
-              </h1>
-
-              <div className="mt-6 h-px w-24 bg-yellow-500" />
-
-              {typedProduct.description && (
-                <p className="mt-8 text-base leading-8 text-gray-400 md:text-lg">
-                  {typedProduct.description}
+                <p className="mt-4 whitespace-pre-line text-base leading-8 text-gray-300">
+                  {item.description}
                 </p>
-              )}
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-
-                <a
-                  href={`https://wa.me/917300479168?text=${whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl bg-yellow-500 px-6 py-3 text-center font-semibold text-black transition hover:bg-yellow-400"
-                >
-                  WhatsApp Enquiry
-                </a>
-
-                <Link
-                  href={`/${locale}#contact`}
-                  className="rounded-xl border border-yellow-500 px-6 py-3 text-center font-semibold text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
-                >
-                  Get Free Quote
-                </Link>
-
               </div>
+            ) : (
+              <p className="mt-8 text-gray-400">
+                Contact us for complete product details and specifications.
+              </p>
+            )}
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {/* Buttons */}
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
 
-                <div className="rounded-xl border border-white/10 bg-black p-5">
-                  <p className="text-sm text-gray-500">
-                    Craftsmanship
-                  </p>
+              <a
+                href="https://wa.me/917300479168?text=Hello%20Sachin%20Stone%20%26%20Article%2C%20I%20want%20to%20enquire%20about%20a%20stone%20product."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl bg-yellow-500 px-7 py-3.5 text-center font-bold text-black transition hover:bg-yellow-400"
+              >
+                Enquire on WhatsApp
+              </a>
 
-                  <p className="mt-1 font-semibold">
-                    Premium Stone Work
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-white/10 bg-black p-5">
-                  <p className="text-sm text-gray-500">
-                    Service
-                  </p>
-
-                  <p className="mt-1 font-semibold">
-                    All India
-                  </p>
-                </div>
-
-              </div>
+              <Link
+                href={`/${locale}/contact`}
+                className="rounded-xl border border-yellow-500 px-7 py-3.5 text-center font-bold text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+              >
+                Contact Us
+              </Link>
 
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl rounded-3xl border border-yellow-500/20 bg-zinc-950 p-8 text-center md:p-14">
+        {/* Bottom CTA */}
+        <div className="mt-12 rounded-2xl border border-yellow-500/20 bg-zinc-950 p-8 text-center">
 
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-500">
-            Sachin Stone & Article
-          </p>
-
-          <h2 className="mt-4 text-3xl font-bold md:text-4xl">
-            Looking for a Custom Stone Design?
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            Looking for Custom Stone Work?
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-gray-400">
-            Tell us about your project. Our experienced stone craftsmen can
-            create customized stone work according to your requirements.
+          <p className="mx-auto mt-3 max-w-2xl text-gray-400">
+            We provide premium stone craftsmanship, custom designs,
+            temple stone work, CNC stone jali and architectural stone work
+            across India.
           </p>
 
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <Link
+            href={`/${locale}/contact`}
+            className="mt-6 inline-block rounded-xl bg-yellow-500 px-7 py-3.5 font-bold text-black transition hover:bg-yellow-400"
+          >
+            Get Free Quote
+          </Link>
 
-            <a
-              href={`https://wa.me/917300479168?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl bg-yellow-500 px-7 py-3 font-bold text-black transition hover:bg-yellow-400"
-            >
-              Contact on WhatsApp
-            </a>
-
-            <Link
-              href={`/${locale}#contact`}
-              className="rounded-xl border border-white/20 px-7 py-3 font-semibold text-white transition hover:border-yellow-500 hover:text-yellow-500"
-            >
-              Contact Us
-            </Link>
-
-          </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

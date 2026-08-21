@@ -1,14 +1,14 @@
- import Navbar from "@/components/Navbar";
-import About from "@/components/About";
+import Navbar from "@/components/Navbar";
+import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 
-export default function AboutPage() {
+export default function GalleryPage() {
   return (
     <>
       <Navbar />
 
       <main className="min-h-screen bg-black pt-20 text-white">
-        <About />
+        <Gallery />
       </main>
 
       <Footer />
