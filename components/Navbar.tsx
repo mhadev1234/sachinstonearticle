@@ -17,7 +17,7 @@ const languages = [
 
 const navLinks = [
   { key: "home", href: "/#home" },
-  { key: "about", href: "/#about" },
+  { key: "about", href: "/about" },
   { key: "services", href: "/services" },
   { key: "products", href: "/products" },
   { key: "gallery", href: "/#gallery" },
