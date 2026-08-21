@@ -31,6 +31,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
+
   const t = useTranslations("Navbar");
 
   function changeLanguage(language: string) {
@@ -43,9 +44,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-500/20 bg-black/90 backdrop-blur-md">
+      {/* MAIN NAVBAR */}
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8">
-
         {/* LOGO */}
 
         <Link
@@ -93,6 +94,7 @@ export default function Navbar() {
         {/* DESKTOP RIGHT */}
 
         <div className="hidden items-center gap-4 md:flex">
+          {/* LANGUAGE */}
 
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-white">
@@ -117,6 +119,8 @@ export default function Navbar() {
             </select>
           </div>
 
+          {/* GET QUOTE */}
+
           <Link
             href="/contact"
             className="rounded-full bg-yellow-500 px-5 py-2 font-semibold text-black transition hover:bg-yellow-400"
@@ -125,26 +129,35 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* MOBILE */}
+        {/* MOBILE RIGHT */}
 
         <div className="flex items-center gap-3 lg:hidden">
+          {/* MOBILE LANGUAGE */}
 
-          <select
-            value={locale}
-            onChange={(e) => changeLanguage(e.target.value)}
-            aria-label={t("language")}
-            className="rounded-lg border border-yellow-500/40 bg-black px-2 py-2 text-xs text-white outline-none"
-          >
-            {languages.map((language) => (
-              <option
-                key={language.code}
-                value={language.code}
-                className="bg-black text-white"
-              >
-                {language.name}
-              </option>
-            ))}
-          </select>
+          <div className="flex items-center gap-1">
+            <span className="hidden text-xs font-medium text-white sm:block">
+              {t("language")}:
+            </span>
+
+            <select
+              value={locale}
+              onChange={(e) => changeLanguage(e.target.value)}
+              aria-label={t("language")}
+              className="rounded-lg border border-yellow-500/40 bg-black px-2 py-2 text-xs text-white outline-none"
+            >
+              {languages.map((language) => (
+                <option
+                  key={language.code}
+                  value={language.code}
+                  className="bg-black text-white"
+                >
+                  {language.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* MOBILE MENU BUTTON */}
 
           <button
             type="button"
@@ -163,21 +176,19 @@ export default function Navbar() {
       {menuOpen && (
         <div className="border-t border-yellow-500/20 bg-black lg:hidden">
           <ul className="flex flex-col items-center gap-4 px-6 py-6 text-white">
-
             {navLinks.map((link) => (
-              <li
-                key={link.key}
-                className="w-full text-center"
-              >
+              <li key={link.key} className="w-full text-center">
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-lg py-2 font-medium transition hover:bg-yellow-500/10 hover:text-yellow-500"
+                  className="block py-2 font-medium transition hover:text-yellow-500"
                 >
                   {t(link.key)}
                 </Link>
               </li>
             ))}
+
+            {/* MOBILE GET QUOTE */}
 
             <li className="pt-2">
               <Link
@@ -188,7 +199,6 @@ export default function Navbar() {
                 {t("getQuote")}
               </Link>
             </li>
-
           </ul>
         </div>
       )}

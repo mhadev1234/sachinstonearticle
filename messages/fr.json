@@ -10,6 +10,7 @@
     "language": "Langue",
     "getQuote": "Obtenir un devis"
   },
+
   "Hero": {
     "welcome": "Créer une beauté intemporelle",
     "brand": "SACHIN",
@@ -23,6 +24,7 @@
     "excellence": "Excellence",
     "discover": "Découvrir plus"
   },
+
   "About": {
     "heading": "À propos de l'entreprise",
     "yearsExperience": "Ans d'expérience",
@@ -47,11 +49,43 @@
       "description": "Nous proposons nos services de pierre partout en Inde."
     }
   },
+
   "Services": {
     "heading": "Nos services",
-    "title": "Pierre premium",
-    "description": "Nous fournissons des travaux de pierre de qualité supérieure grâce à la technologie moderne et aux savoir-faire traditionnels."
+    "title": "Services de pierre premium",
+    "description": "Nous fournissons des travaux de pierre de qualité supérieure grâce à la technologie moderne et aux savoir-faire traditionnels dans toute l'Inde.",
+    "items": {
+      "temple": {
+        "title": "Travaux de pierre pour temples",
+        "description": "Temples en marbre et en grès de qualité supérieure réalisés avec un savoir-faire traditionnel."
+      },
+      "carving": {
+        "title": "Sculpture sur pierre",
+        "description": "Magnifiques designs en pierre sculptés à la main pour les maisons, hôtels et complexes touristiques."
+      },
+      "cnc": {
+        "title": "Jali en pierre CNC",
+        "description": "Jalis en pierre réalisés avec une grande précision CNC et une finition moderne."
+      },
+      "murti": {
+        "title": "Fabrication de statues",
+        "description": "Statues personnalisées en marbre et en pierre réalisées par des artisans expérimentés."
+      },
+      "hotel": {
+        "title": "Travaux pour hôtels et complexes touristiques",
+        "description": "Travaux architecturaux en pierre haut de gamme pour hôtels et complexes touristiques."
+      },
+      "railway": {
+        "title": "Travaux pour gares ferroviaires",
+        "description": "Projets professionnels en pierre pour les gares ferroviaires et les espaces publics."
+      },
+      "cutting": {
+        "title": "Découpe de pierre",
+        "description": "Découpe de pierre de précision pour temples, projets architecturaux, jalis en pierre et travaux personnalisés grâce à des technologies modernes."
+      }
+    }
   },
+
   "Gallery": {
     "portfolio": "Portfolio",
     "heading": "Notre galerie",
@@ -60,6 +94,7 @@
     "empty": "Aucune image disponible.",
     "viewMore": "Voir plus"
   },
+
   "WhyChooseUs": {
     "heading": "Pourquoi nous choisir",
     "titleFirst": "Pourquoi les clients",
@@ -92,6 +127,7 @@
       }
     }
   },
+
   "Review": {
     "heading": "Donnez votre avis",
     "description": "Partagez votre expérience avec Sachin Stone & Article",
@@ -103,6 +139,7 @@
     "customerReviews": "Avis des clients",
     "viewMore": "Voir plus d'avis"
   },
+
   "Contact": {
     "heading": "Contactez-nous",
     "titleFirst": "Construisons votre",
@@ -114,6 +151,7 @@
     "location": "Emplacement",
     "openMaps": "Ouvrir dans Google Maps →"
   },
+
   "Enquiry": {
     "heading": "Obtenir un devis",
     "titleFirst": "Envoyez votre",
@@ -128,9 +166,11 @@
     "submitting": "Envoi...",
     "success": "Merci ! Votre demande a été envoyée avec succès."
   },
+
   "GoogleMap": {
     "heading": "Notre emplacement"
   },
+
   "Footer": {
     "services": "Nos services",
     "contact": "Contact",
