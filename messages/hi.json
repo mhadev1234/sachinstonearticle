@@ -1,198 +1,198 @@
  {
   "Navbar": {
-    "home": "Home",
-    "about": "About",
-    "services": "Services",
-    "products": "Products",
-    "gallery": "Gallery",
-    "reviews": "Reviews",
-    "contact": "Contact",
-    "language": "Language",
-    "getQuote": "Get Free Quote"
+    "home": "होम",
+    "about": "हमारे बारे में",
+    "services": "सेवाएं",
+    "products": "उत्पाद",
+    "gallery": "गैलरी",
+    "reviews": "ग्राहक समीक्षा",
+    "contact": "संपर्क करें",
+    "language": "भाषा",
+    "getQuote": "मुफ्त कोटेशन प्राप्त करें"
   },
 
   "Hero": {
-    "welcome": "Crafting Timeless Beauty",
+    "welcome": "शाश्वत सुंदरता का निर्माण",
     "brand": "SACHIN",
     "brandSub": "STONE & ARTICLE",
-    "tagline": "Where Stone Becomes Art",
-    "description": "We transform natural stone into timeless expressions of art, elegance and exceptional craftsmanship. Every creation is crafted with precision, passion and attention to detail.",
-    "quote": "Get Free Quote",
-    "whatsapp": "WhatsApp Now",
-    "years": "Years",
-    "craftsmanship": "Craftsmanship",
-    "excellence": "Excellence",
-    "discover": "Discover More"
+    "tagline": "जहाँ पत्थर कला बन जाता है",
+    "description": "हम प्राकृतिक पत्थर को कला, सुंदरता और उत्कृष्ट कारीगरी से युक्त शाश्वत रचनाओं में बदलते हैं। प्रत्येक रचना को सटीकता, जुनून और बारीकी पर विशेष ध्यान देकर तैयार किया जाता है।",
+    "quote": "मुफ्त कोटेशन प्राप्त करें",
+    "whatsapp": "WhatsApp पर संपर्क करें",
+    "years": "वर्ष",
+    "craftsmanship": "कारीगरी",
+    "excellence": "उत्कृष्टता",
+    "discover": "और जानें"
   },
 
   "About": {
-    "heading": "About Our Company",
-    "yearsExperience": "Years Experience",
-    "titleFirst": "Creating",
-    "titleHighlight": " Premium Stone",
-    "titleLast": "Architecture",
-    "description": "Sachin Stone and Article is an experienced stone craftsmanship company based in Rajasthan, India. We specialize in Temple Stone Work, CNC Stone Jali, Murti Making, Stone Carving, Stone Cutting, Hotel & Resort Projects and Railway Station Work. With 15+ years of experience, we provide high-quality stone craftsmanship services across India.",
+    "heading": "हमारी कंपनी के बारे में",
+    "yearsExperience": "वर्षों का अनुभव",
+    "titleFirst": "निर्माण करते हैं",
+    "titleHighlight": " प्रीमियम पत्थर",
+    "titleLast": "की वास्तुकला",
+    "description": "Sachin Stone and Article राजस्थान, भारत में स्थित एक अनुभवी पत्थर कारीगरी कंपनी है। हम मंदिर पत्थर कार्य, CNC स्टोन जाली, मूर्ति निर्माण, पत्थर नक्काशी, पत्थर कटिंग, होटल एवं रिसॉर्ट परियोजनाओं तथा रेलवे स्टेशन के कार्य में विशेषज्ञता रखते हैं। 15+ वर्षों के अनुभव के साथ हम पूरे भारत में उच्च गुणवत्ता वाली पत्थर कारीगरी सेवाएं प्रदान करते हैं।",
 
     "premiumQuality": {
-      "title": "Premium Quality",
-      "description": "Premium natural stone with excellent craftsmanship."
+      "title": "प्रीमियम गुणवत्ता",
+      "description": "उत्कृष्ट कारीगरी के साथ उच्च गुणवत्ता वाले प्राकृतिक पत्थर का उपयोग।"
     },
 
     "experiencedTeam": {
-      "title": "Experienced Team",
-      "description": "Skilled artisans with 15+ years of experience."
+      "title": "अनुभवी टीम",
+      "description": "15+ वर्षों के अनुभव वाले कुशल कारीगर।"
     },
 
     "customDesign": {
-      "title": "Custom Designs",
-      "description": "Every project is created according to customer requirements."
+      "title": "कस्टम डिजाइन",
+      "description": "हर परियोजना ग्राहक की आवश्यकताओं के अनुसार तैयार की जाती है।"
     },
 
     "allIndiaService": {
-      "title": "All India Service",
-      "description": "We provide stone work services across India."
+      "title": "पूरे भारत में सेवा",
+      "description": "हम पूरे भारत में पत्थर के काम की सेवाएं प्रदान करते हैं।"
     }
   },
 
   "Services": {
-    "heading": "Our Services",
-    "title": "Premium Stone Services",
-    "description": "We deliver premium quality stone craftsmanship with modern technology and traditional skills across India.",
+    "heading": "हमारी सेवाएं",
+    "title": "प्रीमियम पत्थर सेवाएं",
+    "description": "हम आधुनिक तकनीक और पारंपरिक कारीगरी के साथ पूरे भारत में उच्च गुणवत्ता वाली पत्थर कारीगरी सेवाएं प्रदान करते हैं।",
 
     "items": {
       "temple": {
-        "title": "Temple Stone Work",
-        "description": "Premium marble and sandstone temples with traditional craftsmanship."
+        "title": "मंदिर पत्थर कार्य",
+        "description": "पारंपरिक कारीगरी के साथ प्रीमियम संगमरमर और बलुआ पत्थर के मंदिर।"
       },
 
       "carving": {
-        "title": "Stone Carving",
-        "description": "Beautiful hand carved stone designs for homes, hotels and resorts."
+        "title": "पत्थर की नक्काशी",
+        "description": "घरों, होटलों और रिसॉर्ट्स के लिए सुंदर हाथ से नक्काशी किए गए पत्थर के डिजाइन।"
       },
 
       "cnc": {
-        "title": "CNC Stone Jali",
-        "description": "High precision CNC stone jali with modern finishing."
+        "title": "CNC स्टोन जाली",
+        "description": "आधुनिक फिनिशिंग के साथ उच्च सटीकता वाली CNC स्टोन जाली।"
       },
 
       "murti": {
-        "title": "Murti Making",
-        "description": "Custom marble and stone statues crafted by experienced artisans."
+        "title": "मूर्ति निर्माण",
+        "description": "अनुभवी कारीगरों द्वारा तैयार की गई कस्टम संगमरमर और पत्थर की मूर्तियां।"
       },
 
       "hotel": {
-        "title": "Hotel & Resort Work",
-        "description": "Luxury architectural stone work for hotels and resorts."
+        "title": "होटल एवं रिसॉर्ट कार्य",
+        "description": "होटल और रिसॉर्ट्स के लिए प्रीमियम वास्तुशिल्प पत्थर का कार्य।"
       },
 
       "railway": {
-        "title": "Railway Station Work",
-        "description": "Professional stone projects for railway stations and public places."
+        "title": "रेलवे स्टेशन कार्य",
+        "description": "रेलवे स्टेशनों और सार्वजनिक स्थानों के लिए पेशेवर पत्थर परियोजनाएं।"
       },
 
       "cutting": {
-        "title": "Stone Cutting",
-        "description": "Precision stone cutting for temples, architectural projects, stone jali and custom stone work using modern cutting technology."
+        "title": "पत्थर कटिंग",
+        "description": "आधुनिक कटिंग तकनीक का उपयोग करके मंदिरों, वास्तुशिल्प परियोजनाओं, स्टोन जाली और कस्टम पत्थर कार्य के लिए सटीक पत्थर कटिंग।"
       }
     }
   },
 
   "Gallery": {
-    "portfolio": "Portfolio",
-    "heading": "Our Gallery",
-    "description": "Explore our premium Temple Stone Work, Stone Carving, CNC Stone Jali, Marble Murti and Architectural Stone Projects completed with exceptional craftsmanship across India.",
-    "loading": "Gallery is loading...",
-    "empty": "No gallery available yet.",
-    "viewMore": "View More Gallery"
+    "portfolio": "पोर्टफोलियो",
+    "heading": "हमारी गैलरी",
+    "description": "हमारे प्रीमियम मंदिर पत्थर कार्य, पत्थर नक्काशी, CNC स्टोन जाली, संगमरमर की मूर्तियों और वास्तुशिल्प पत्थर परियोजनाओं को देखें, जिन्हें पूरे भारत में उत्कृष्ट कारीगरी के साथ पूरा किया गया है।",
+    "loading": "गैलरी लोड हो रही है...",
+    "empty": "अभी कोई गैलरी उपलब्ध नहीं है।",
+    "viewMore": "और गैलरी देखें"
   },
 
   "WhyChooseUs": {
-    "heading": "Why Choose Us",
-    "titleFirst": "Why Customers",
-    "titleHighlight": " Trust Us",
-    "description": "We combine traditional craftsmanship with modern technology to deliver premium stone work that lasts for generations.",
+    "heading": "हमें क्यों चुनें",
+    "titleFirst": "ग्राहक क्यों",
+    "titleHighlight": " हम पर भरोसा करते हैं",
+    "description": "हम पारंपरिक कारीगरी को आधुनिक तकनीक के साथ जोड़कर ऐसी प्रीमियम पत्थर की रचनाएं तैयार करते हैं जो पीढ़ियों तक बनी रहती हैं।",
 
     "features": {
       "experience": {
-        "title": "15+ Years Experience",
-        "description": "Trusted stone craftsmanship with years of industry experience."
+        "title": "15+ वर्षों का अनुभव",
+        "description": "वर्षों के उद्योग अनुभव वाली विश्वसनीय पत्थर कारीगरी टीम।"
       },
 
       "quality": {
-        "title": "Premium Quality",
-        "description": "We use the finest quality natural stone with perfect finishing."
+        "title": "प्रीमियम गुणवत्ता",
+        "description": "हम बेहतरीन गुणवत्ता वाले प्राकृतिक पत्थर का उपयोग करते हैं और शानदार फिनिशिंग प्रदान करते हैं।"
       },
 
       "custom": {
-        "title": "Custom Designs",
-        "description": "Every project is designed according to customer requirements."
+        "title": "कस्टम डिजाइन",
+        "description": "हर परियोजना ग्राहक की आवश्यकताओं के अनुसार डिजाइन की जाती है।"
       },
 
       "india": {
-        "title": "All India Service",
-        "description": "We successfully complete projects across India."
+        "title": "पूरे भारत में सेवा",
+        "description": "हमने पूरे भारत में सफलतापूर्वक परियोजनाएं पूरी की हैं।"
       },
 
       "cnc": {
-        "title": "Latest CNC Technology",
-        "description": "High precision CNC stone cutting and carving solutions."
+        "title": "आधुनिक CNC तकनीक",
+        "description": "उच्च सटीकता वाली CNC पत्थर कटिंग और नक्काशी की सुविधाएं।"
       },
 
       "delivery": {
-        "title": "On-Time Delivery",
-        "description": "We value your time and complete projects on schedule."
+        "title": "समय पर डिलीवरी",
+        "description": "हम आपके समय का सम्मान करते हैं और परियोजनाओं को निर्धारित समय पर पूरा करते हैं।"
       }
     }
   },
 
   "Review": {
-    "heading": "Give Your Review",
-    "description": "Share your experience with Sachin Stone & Article",
-    "rating": "Rating",
-    "name": "Your Name",
-    "message": "Your Review",
-    "submit": "Submit Review",
-    "submitting": "Submitting...",
-    "customerReviews": "Customer Reviews",
-    "viewMore": "View More Reviews"
+    "heading": "अपनी समीक्षा दें",
+    "description": "Sachin Stone & Article के साथ अपने अनुभव को साझा करें",
+    "rating": "रेटिंग",
+    "name": "आपका नाम",
+    "message": "आपकी समीक्षा",
+    "submit": "समीक्षा भेजें",
+    "submitting": "भेजा जा रहा है...",
+    "customerReviews": "ग्राहकों की समीक्षाएं",
+    "viewMore": "और समीक्षाएं देखें"
   },
 
   "Contact": {
-    "heading": "Contact Us",
-    "titleFirst": "Let's Build Your",
-    "titleHighlight": " Dream Project",
-    "description": "Contact us for Temple Stone Work, Stone Carving, CNC Jali, Murti Making and Architectural Stone Projects.",
-    "call": "Call Us",
+    "heading": "हमसे संपर्क करें",
+    "titleFirst": "आइए बनाएं आपका",
+    "titleHighlight": " सपनों का प्रोजेक्ट",
+    "description": "मंदिर पत्थर कार्य, पत्थर नक्काशी, CNC जाली, मूर्ति निर्माण और वास्तुशिल्प पत्थर परियोजनाओं के लिए हमसे संपर्क करें।",
+    "call": "हमें कॉल करें",
     "whatsapp": "WhatsApp",
-    "email": "Email",
-    "location": "Location",
-    "openMaps": "Open in Google Maps →"
+    "email": "ईमेल",
+    "location": "स्थान",
+    "openMaps": "Google Maps में खोलें →"
   },
 
   "Enquiry": {
-    "heading": "Get Quote",
-    "titleFirst": "Send Your",
-    "titleHighlight": " Enquiry",
-    "description": "Share your project details and our team will contact you soon.",
-    "name": "Your Name",
-    "phone": "Phone Number",
-    "email": "Email Address",
-    "location": "Project Location",
-    "message": "Tell us about your project...",
-    "submit": "Submit Enquiry",
-    "submitting": "Submitting...",
-    "success": "Thank you! Your enquiry has been submitted successfully."
+    "heading": "कोटेशन प्राप्त करें",
+    "titleFirst": "अपनी",
+    "titleHighlight": " पूछताछ भेजें",
+    "description": "अपने प्रोजेक्ट की जानकारी साझा करें और हमारी टीम जल्द ही आपसे संपर्क करेगी।",
+    "name": "आपका नाम",
+    "phone": "फोन नंबर",
+    "email": "ईमेल पता",
+    "location": "प्रोजेक्ट का स्थान",
+    "message": "अपने प्रोजेक्ट के बारे में बताएं...",
+    "submit": "पूछताछ भेजें",
+    "submitting": "भेजा जा रहा है...",
+    "success": "धन्यवाद! आपकी पूछताछ सफलतापूर्वक भेज दी गई है।"
   },
 
   "GoogleMap": {
-    "heading": "Our Location"
+    "heading": "हमारा स्थान"
   },
 
   "Footer": {
-    "services": "Our Services",
-    "contact": "Contact",
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "rights": "All Rights Reserved."
+    "services": "हमारी सेवाएं",
+    "contact": "संपर्क करें",
+    "privacy": "गोपनीयता नीति",
+    "terms": "नियम एवं शर्तें",
+    "rights": "सर्वाधिकार सुरक्षित।"
   }
 }
