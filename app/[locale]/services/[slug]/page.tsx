@@ -39,6 +39,10 @@ interface GalleryItem {
   created_at?: string;
 }
 
+/* =====================================================
+   SLUG HELPER
+===================================================== */
+
 function makeSlug(text: string) {
   return text
     .toLowerCase()
@@ -47,6 +51,50 @@ function makeSlug(text: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/* =====================================================
+   FINAL SERVICE SLUG -> DATABASE TITLE MAPPING
+===================================================== */
+
+const serviceTitleMap: Record<string, string[]> = {
+  "temple-stone-work": [
+    "Temple Stone Work",
+  ],
+
+  "cnc-stone-jali": [
+    "CNC Stone Jali",
+  ],
+
+  "murti-making": [
+    "Murti Making",
+  ],
+
+  "stone-carving": [
+    "Stone Carving",
+  ],
+
+  "stone-cutting": [
+    "Stone Cutting",
+  ],
+
+  "architectural-stone-work": [
+    "Architectural Stone Work",
+  ],
+
+  "hotel-resort-stone-work": [
+    "Hotel & Resort Work",
+    "Hotel Resort Work",
+  ],
+
+  "railway-station-stone-work": [
+    "Railway Station Work",
+    "Railway Station Stone Work",
+  ],
+};
+
+/* =====================================================
+   GET SERVICE BY FIXED SLUG
+===================================================== */
 
 async function getServiceBySlug(slug: string) {
   const { data, error } = await supabase
@@ -59,17 +107,34 @@ async function getServiceBySlug(slug: string) {
     });
 
   if (error) {
-    console.error("Service SEO Load Error:", error);
+    console.error("Service Load Error:", error);
     return null;
   }
 
   const services: ServiceItem[] = data || [];
 
-  return (
-    services.find(
-      (service) => makeSlug(service.title) === slug
-    ) || null
+  const normalizedSlug = makeSlug(slug);
+
+  const allowedTitles =
+    serviceTitleMap[normalizedSlug] || [];
+
+  if (allowedTitles.length === 0) {
+    return null;
+  }
+
+  const normalizedTitles = allowedTitles.map(
+    (title) => makeSlug(title)
   );
+
+  const service = services.find((item) => {
+    const databaseTitleSlug = makeSlug(item.title);
+
+    return normalizedTitles.includes(
+      databaseTitleSlug
+    );
+  });
+
+  return service || null;
 }
 
 /* =====================================================
@@ -101,15 +166,19 @@ export async function generateMetadata({
     .trim()
     .slice(0, 160);
 
-  const title = `${service.title} | Sachin Stone & Article`;
+  const title =
+    `${service.title} | Sachin Stone & Article`;
 
   const siteUrl =
     "https://sachinstonearticle.vercel.app";
 
+  /*
+   * IMPORTANT:
+   * Canonical URL uses the fixed URL slug from the browser.
+   * This keeps hotel/railway URLs consistent with Navbar.
+   */
   const canonicalUrl =
-    `${siteUrl}/${locale}/services/${makeSlug(
-      service.title
-    )}`;
+    `${siteUrl}/${locale}/services/${makeSlug(slug)}`;
 
   const keywords = [
     service.title,
@@ -185,9 +254,9 @@ export default async function ServiceDetailPage({
     notFound();
   }
 
-  /* =====================================================
+  /* =================================================
      LOAD GALLERY
-  ===================================================== */
+  ================================================= */
 
   const {
     data: galleryData,
@@ -212,13 +281,12 @@ export default async function ServiceDetailPage({
   const gallery: GalleryItem[] =
     galleryData || [];
 
-  /* =====================================================
+  /* =================================================
      FIND SERVICE GALLERY IMAGES
-  ===================================================== */
+  ================================================= */
 
-  const serviceName = service.title
-    .trim()
-    .toLowerCase();
+  const serviceName =
+    service.title.trim().toLowerCase();
 
   const serviceGalleryImages =
     gallery.filter((item) => {
@@ -236,18 +304,18 @@ export default async function ServiceDetailPage({
       );
     });
 
-  /* =====================================================
+  /* =================================================
      MAIN IMAGE
-  ===================================================== */
+  ================================================= */
 
   const mainImage =
     service.image_url?.trim() ||
     serviceGalleryImages[0]?.image_url ||
     null;
 
-  /* =====================================================
+  /* =================================================
      DESCRIPTION
-  ===================================================== */
+  ================================================= */
 
   const shortDescription =
     service.short_description ||
@@ -259,9 +327,9 @@ export default async function ServiceDetailPage({
     service.description ||
     shortDescription;
 
-  /* =====================================================
+  /* =================================================
      WHATSAPP
-  ===================================================== */
+  ================================================= */
 
   const whatsappMessage =
     encodeURIComponent(
@@ -271,11 +339,11 @@ export default async function ServiceDetailPage({
   const whatsappUrl =
     `https://wa.me/917300479168?text=${whatsappMessage}`;
 
-  /* =====================================================
+  /* =================================================
      OTHER SERVICES
-  ===================================================== */
+  ================================================= */
 
-  const { data: otherServicesData } =
+  const { data: otherServicesData, error: otherServicesError } =
     await supabase
       .from("services")
       .select(
@@ -287,12 +355,19 @@ export default async function ServiceDetailPage({
       })
       .limit(6);
 
+  if (otherServicesError) {
+    console.error(
+      "Other Services Error:",
+      otherServicesError
+    );
+  }
+
   const otherServices: ServiceItem[] =
     otherServicesData || [];
 
-  /* =====================================================
+  /* =================================================
      PAGE
-  ===================================================== */
+  ================================================= */
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -356,12 +431,12 @@ export default async function ServiceDetailPage({
                 <img
                   src={mainImage}
                   alt={service.title}
-                  className="h-350px w-full object-cover sm:h-500px"
+                  className="h-[350px] w-full object-cover sm:h-[500px]"
                 />
 
               </div>
             ) : (
-              <div className="flex h-350px items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-950 text-gray-600 sm:h-500px">
+              <div className="flex h-[350px] items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-950 text-gray-600 sm:h-[500px]">
                 No Image Available
               </div>
             )}
@@ -495,7 +570,7 @@ export default async function ServiceDetailPage({
 
       {/* =================================================
           SERVICE GALLERY
-      ===================================================== */}
+      ================================================= */}
 
       {serviceGalleryImages.length > 0 && (
         <section className="border-t border-zinc-900 bg-zinc-950">
@@ -626,7 +701,7 @@ export default async function ServiceDetailPage({
                 (item) => (
                   <Link
                     key={item.id}
-                    href={`/${locale}/services/${makeSlug(
+                    href={`/${locale}/services/${getServiceSlug(
                       item.title
                     )}`}
                     className="group rounded-xl border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-yellow-500/50"
@@ -661,5 +736,53 @@ export default async function ServiceDetailPage({
       )}
 
     </main>
+  );
+}
+
+/* =====================================================
+   DATABASE TITLE -> FIXED URL SLUG
+   Used by "Other Services"
+===================================================== */
+
+function getServiceSlug(title: string) {
+  const normalizedTitle = title
+    .trim()
+    .toLowerCase();
+
+  const fixedSlugMap: Record<string, string> = {
+    "temple stone work":
+      "temple-stone-work",
+
+    "cnc stone jali":
+      "cnc-stone-jali",
+
+    "murti making":
+      "murti-making",
+
+    "stone carving":
+      "stone-carving",
+
+    "stone cutting":
+      "stone-cutting",
+
+    "architectural stone work":
+      "architectural-stone-work",
+
+    "hotel & resort work":
+      "hotel-resort-stone-work",
+
+    "hotel resort work":
+      "hotel-resort-stone-work",
+
+    "railway station work":
+      "railway-station-stone-work",
+
+    "railway station stone work":
+      "railway-station-stone-work",
+  };
+
+  return (
+    fixedSlugMap[normalizedTitle] ||
+    makeSlug(title)
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { supabase } from "../lib/supabase";
 
@@ -16,33 +17,48 @@ interface GalleryItem {
 
 export default function Gallery() {
   const t = useTranslations("Gallery");
+  const pathname = usePathname();
+
+  const locale =
+    pathname.split("/")[1] === "hi" ? "hi" : "en";
 
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] =
+    useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
 
     async function loadGallery() {
-      const { data, error } = await supabase
-        .from("gallery")
-        .select("*")
-        .order("created_at", { ascending: false });
+      try {
+        const { data, error } = await supabase
+          .from("gallery")
+          .select("*")
+          .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error("Gallery Error:", error);
+        if (error) {
+          console.error("Gallery Error:", error);
 
-        if (!cancelled) {
-          setLoading(false);
+          if (!cancelled) {
+            setGallery([]);
+            setLoading(false);
+          }
+
+          return;
         }
 
-        return;
-      }
+        if (!cancelled) {
+          setGallery((data as GalleryItem[]) || []);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Gallery Unexpected Error:", error);
 
-      if (!cancelled) {
-        setGallery(data || []);
-        setLoading(false);
+        if (!cancelled) {
+          setGallery([]);
+          setLoading(false);
+        }
       }
     }
 
@@ -74,23 +90,24 @@ export default function Gallery() {
   }, []);
 
   const nextItem = useCallback(() => {
-    setSelectedIndex((currentIndex) => {
-      if (currentIndex === null || gallery.length === 0) {
-        return currentIndex;
+    setSelectedIndex((current) => {
+      if (current === null || gallery.length === 0) {
+        return current;
       }
 
-      return (currentIndex + 1) % gallery.length;
+      return (current + 1) % gallery.length;
     });
   }, [gallery.length]);
 
   const previousItem = useCallback(() => {
-    setSelectedIndex((currentIndex) => {
-      if (currentIndex === null || gallery.length === 0) {
-        return currentIndex;
+    setSelectedIndex((current) => {
+      if (current === null || gallery.length === 0) {
+        return current;
       }
 
       return (
-        (currentIndex - 1 + gallery.length) % gallery.length
+        (current - 1 + gallery.length) %
+        gallery.length
       );
     });
   }, [gallery.length]);
@@ -99,23 +116,18 @@ export default function Gallery() {
     function handleKeyDown(e: KeyboardEvent) {
       if (selectedIndex === null) return;
 
-      if (e.key === "Escape") {
-        closeViewer();
-      }
-
-      if (e.key === "ArrowRight") {
-        nextItem();
-      }
-
-      if (e.key === "ArrowLeft") {
-        previousItem();
-      }
+      if (e.key === "Escape") closeViewer();
+      if (e.key === "ArrowRight") nextItem();
+      if (e.key === "ArrowLeft") previousItem();
     }
 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
     };
   }, [
     selectedIndex,
@@ -132,8 +144,8 @@ export default function Gallery() {
       >
         <div className="mx-auto max-w-7xl">
 
+          {/* HEADER */}
           <div className="mb-14 text-center">
-
             <span className="inline-block rounded-full border border-yellow-500/30 bg-yellow-500/10 px-6 py-2 text-sm font-semibold uppercase tracking-[4px] text-yellow-400">
               {t("portfolio")}
             </span>
@@ -147,25 +159,26 @@ export default function Gallery() {
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">
               {t("description")}
             </p>
-
           </div>
 
+          {/* LOADING */}
           {loading && (
             <div className="py-20 text-center text-gray-400">
               {t("loading")}
             </div>
           )}
 
+          {/* EMPTY */}
           {!loading && gallery.length === 0 && (
             <div className="py-20 text-center text-gray-400">
               {t("empty")}
             </div>
           )}
 
+          {/* GALLERY */}
           {!loading && gallery.length > 0 && (
             <>
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-
                 {visibleGallery.map((item, index) => (
                   <button
                     key={item.id}
@@ -204,17 +217,16 @@ export default function Gallery() {
                           </div>
                         </div>
                       )}
-
                     </div>
                   </button>
                 ))}
-
               </div>
 
+              {/* VIEW MORE */}
               {gallery.length > 6 && (
                 <div className="mt-12 text-center">
                   <Link
-                    href="/gallery"
+                    href={`/${locale}/gallery`}
                     className="inline-block rounded-full border border-yellow-500 bg-yellow-500 px-8 py-3 font-semibold text-black transition duration-300 hover:bg-transparent hover:text-yellow-400"
                   >
                     {t("viewMore")}
@@ -223,80 +235,82 @@ export default function Gallery() {
               )}
             </>
           )}
-
         </div>
       </section>
 
-      {selectedIndex !== null && gallery[selectedIndex] && (
-        <div
-          className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95 p-4"
-          onClick={closeViewer}
-        >
-
-          <button
-            type="button"
-            onClick={closeViewer}
-            className="absolute right-5 top-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black"
-            aria-label="Close gallery viewer"
-          >
-            ✕
-          </button>
-
-          {gallery.length > 1 && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                previousItem();
-              }}
-              className="absolute left-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black md:left-8"
-              aria-label="Previous gallery item"
-            >
-              ‹
-            </button>
-          )}
-
-          {gallery.length > 1 && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                nextItem();
-              }}
-              className="absolute right-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black md:right-8"
-              aria-label="Next gallery item"
-            >
-              ›
-            </button>
-          )}
-
+      {/* FULLSCREEN VIEWER */}
+      {selectedIndex !== null &&
+        gallery[selectedIndex] && (
           <div
-            className="flex max-h-[90vh] max-w-[90vw] items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95 p-4"
+            onClick={closeViewer}
           >
+            {/* CLOSE */}
+            <button
+              type="button"
+              onClick={closeViewer}
+              className="absolute right-5 top-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black"
+              aria-label="Close gallery viewer"
+            >
+              ✕
+            </button>
 
-            {gallery[selectedIndex].media_type === "image" && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={gallery[selectedIndex].image_url}
-                alt="Sachin Stone and Article stone work"
-                className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain"
-              />
+            {/* PREVIOUS */}
+            {gallery.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  previousItem();
+                }}
+                className="absolute left-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black md:left-8"
+              >
+                ‹
+              </button>
             )}
 
-            {gallery[selectedIndex].media_type === "video" && (
-              <video
-                src={gallery[selectedIndex].image_url}
-                controls
-                autoPlay
-                playsInline
-                className="max-h-[90vh] max-w-[90vw] rounded-xl bg-black"
-              />
+            {/* NEXT */}
+            {gallery.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextItem();
+                }}
+                className="absolute right-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-yellow-500 bg-black/70 text-2xl text-yellow-400 transition hover:bg-yellow-500 hover:text-black md:right-8"
+              >
+                ›
+              </button>
             )}
 
+            {/* MEDIA */}
+            <div
+              className="flex max-h-[90vh] max-w-[90vw] items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {gallery[selectedIndex].media_type ===
+                "image" && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={gallery[selectedIndex].image_url}
+                  alt="Sachin Stone and Article stone work"
+                  className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain"
+                />
+              )}
+
+              {gallery[selectedIndex].media_type ===
+                "video" && (
+                <video
+                  src={gallery[selectedIndex].image_url}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="max-h-[90vh] max-w-[90vw] rounded-xl bg-black"
+                />
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </>
   );
 }

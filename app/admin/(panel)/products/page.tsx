@@ -1,4 +1,4 @@
- "use client";
+  "use client";
 
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { supabase } from "@/lib/supabase";
@@ -16,25 +16,22 @@ type Product = {
 };
 
 const categories = [
-  "Temple Stone Work",
-  "Marble & Stone Murti",
-  "Stone Carving",
+  "Stone Murti & Statues",
   "CNC Stone Jali",
+  "Stone Temple Components",
   "Stone Pillars & Columns",
-  "Entry Gate",
+  "Stone Gates",
   "Stone Doors & Frames",
   "Stone Chhatri / Gazebo",
   "Stone Fountains",
-  "Hotel & Resort Stone Work",
-  "Railway & Public Projects",
-  "Stone Cutting",
-  "Custom Architectural Stone Work",
+  "Architectural Stone Elements",
+  "Custom Stone Products",
 ];
 
 const emptyForm = {
   name: "",
   slug: "",
-  category: "Temple Stone Work",
+  category: "Stone Murti & Statues",
   description: "",
   image_url: "",
   featured: false,
