@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080808;
+  --foreground: #f7f7f7;
+  --reference-pink: #d4a72c;
+  --reference-pink-dark: #b8860b;
+  --reference-pink-soft: #e4bf55;
+  --color-yellow-300: #ead28a;
+  --color-yellow-400: #e4bf55;
+  --color-yellow-500: #d4a72c;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+::selection { background: #d4a72c; color: #fff; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #d4a72c; outline-offset: 3px;
+}
+
+/* Brand accent: the reference direction is black/white with hot pink. */
+.text-yellow-300 { color: #ead28a !important; }
+.text-yellow-400, .text-yellow-500 { color: #d4a72c !important; }
+.bg-yellow-500 { background-color: #d4a72c !important; }
+.bg-yellow-400 { background-color: #e4bf55 !important; }
+.border-yellow-500, .border-yellow-400 { border-color: #d4a72c !important; }
+.border-yellow-500\/10 { border-color: rgb(212 167 44 / .10) !important; }
+.border-yellow-500\/20 { border-color: rgb(212 167 44 / .20) !important; }
+.border-yellow-500\/30 { border-color: rgb(212 167 44 / .30) !important; }
+.hover\:bg-yellow-400:hover { background-color: #e4bf55 !important; }
+.hover\:bg-yellow-500:hover { background-color: #d4a72c !important; }
+.hover\:text-yellow-400:hover, .hover\:text-yellow-500:hover { color: #e4bf55 !important; }
+.shadow-yellow-500\/5 { --tw-shadow-color: rgb(212 167 44 / .05) !important; }
+
+[data-theme="royal-dark"], [data-theme="royal-dark"] body {
+  --background: #080808; --foreground: #f7f7f7; background: #080808; color: #f7f7f7;
+}
+[data-theme="royal-dark"] nav { border-bottom-color: transparent !important; }
+
+[data-theme="stone"], [data-theme="stone"] body {
+  --background: #17130f; --foreground: #f7f0e6; background: #17130f; color: #f7f0e6;
+}
+[data-theme="stone"] .bg-black { background-color: #17130f !important; }
+[data-theme="stone"] .bg-zinc-950 { background-color: #201a14 !important; }
+[data-theme="stone"] .bg-zinc-900 { background-color: #2a2119 !important; }
+[data-theme="stone"] .text-white { color: #f7f0e6 !important; }
+[data-theme="stone"] .text-gray-400, [data-theme="stone"] .text-zinc-400 { color: #c9b9a8 !important; }
+[data-theme="stone"] .text-gray-500, [data-theme="stone"] .text-zinc-500 { color: #a89480 !important; }
+
+/* Luxury Light = premium daylight version of the same brand, not a gold theme. */
+[data-theme="luxury-light"], [data-theme="luxury-light"] body {
+  --background: #f8f7f4; --foreground: #171717; background: #f8f7f4; color: #171717;
+}
+[data-theme="luxury-light"] body { background: linear-gradient(180deg, #fff 0%, #f8f7f4 55%, #f1efeb 100%); }
+[data-theme="luxury-light"] .bg-black, [data-theme="luxury-light"] .bg-zinc-950 { background-color: #fff !important; }
+[data-theme="luxury-light"] .bg-zinc-900 { background-color: #f4f3f0 !important; }
+[data-theme="luxury-light"] .bg-zinc-800 { background-color: #eceae5 !important; }
+[data-theme="luxury-light"] .bg-zinc-700 { background-color: #e1dfda !important; }
+[data-theme="luxury-light"] .text-white { color: #171717 !important; }
+[data-theme="luxury-light"] .text-gray-300, [data-theme="luxury-light"] .text-zinc-300 { color: #383838 !important; }
+[data-theme="luxury-light"] .text-gray-400, [data-theme="luxury-light"] .text-zinc-400 { color: #5f5f5f !important; }
+[data-theme="luxury-light"] .text-gray-500, [data-theme="luxury-light"] .text-zinc-500 { color: #737373 !important; }
+[data-theme="luxury-light"] .text-yellow-300 { color: #b78916 !important; }
+[data-theme="luxury-light"] .text-yellow-400, [data-theme="luxury-light"] .text-yellow-500 { color: #b8860b !important; }
+[data-theme="luxury-light"] .bg-yellow-500 { background-color: #b8860b !important; color: #fff !important; }
+[data-theme="luxury-light"] .bg-yellow-400 { background-color: #d4a72c !important; color: #fff !important; }
+[data-theme="luxury-light"] .border-zinc-900 { border-color: #e7e5e1 !important; }
+[data-theme="luxury-light"] .border-zinc-800 { border-color: #ddd9d3 !important; }
+[data-theme="luxury-light"] .border-zinc-700 { border-color: #d0ccc6 !important; }
+[data-theme="luxury-light"] .border-yellow-500, [data-theme="luxury-light"] .border-yellow-400 { border-color: #b8860b !important; }
+[data-theme="luxury-light"] .border-yellow-500\/10 { border-color: rgb(184 134 11 / .10) !important; }
+[data-theme="luxury-light"] .border-yellow-500\/20 { border-color: rgb(184 134 11 / .20) !important; }
+[data-theme="luxury-light"] .border-yellow-500\/30 { border-color: rgb(184 134 11 / .30) !important; }
+[data-theme="luxury-light"] .hover\:bg-yellow-400:hover { background-color: #d4a72c !important; color: #fff !important; }
+[data-theme="luxury-light"] .hover\:bg-yellow-500:hover { background-color: #b8860b !important; color: #fff !important; }
+[data-theme="luxury-light"] .hover\:text-yellow-400:hover, [data-theme="luxury-light"] .hover\:text-yellow-500:hover { color: #8f6b0a !important; }
+[data-theme="luxury-light"] .bg-black\/35 { background-color: rgb(0 0 0 / .20) !important; }
+[data-theme="luxury-light"] .bg-black\/60 { background-color: rgb(0 0 0 / .52) !important; }
+[data-theme="luxury-light"] .border-white\/10 { border-color: rgb(0 0 0 / .10) !important; }
+[data-theme="luxury-light"] .border-white\/20 { border-color: rgb(0 0 0 / .16) !important; }
+[data-theme="luxury-light"] nav { box-shadow: none; }
+
+.offering-card { transition: transform .35s ease, box-shadow .35s ease; box-shadow: 0 14px 40px rgb(0 0 0 / .28); }
+.offering-card:hover { transform: translateY(-3px); box-shadow: 0 22px 52px rgb(0 0 0 / .34); }
+.offering-card img { filter: saturate(1.02) contrast(1.02); }
+[data-theme="luxury-light"] .offerings-section { background: #f8f7f4 !important; color: #171717 !important; }
+[data-theme="luxury-light"] .offerings-section .offering-heading { color: #171717 !important; }
+[data-theme="luxury-light"] .offerings-section .offering-description { color: #666 !important; }
+[data-theme="luxury-light"] .offerings-section .offering-card { background: #fff !important; box-shadow: 0 14px 34px rgb(0 0 0 / .10); }
+[data-theme="luxury-light"] .offerings-section .offering-cta { color: #b8860b !important; border-color: #b8860b !important; background: #fff !important; }
+[data-theme="luxury-light"] .offerings-section .offering-cta:hover { background: #b8860b !important; color: #fff !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+
+/* Final brand refinements */
+.brand-gold { color: #d4a72c !important; }
+.brand-gold-border { border-color: #d4a72c !important; }
+.contact-card { background: #111 !important; border-color: #2a2a2a !important; }
+.whatsapp-brand { color: #25D366 !important; }
+.email-brand { color: #EA4335 !important; }
+.phone-brand { color: #d4af37 !important; }
+.location-brand { color: #60a5fa !important; }
+[data-theme="luxury-light"] .contact-card { background:#171717 !important; border-color:#2b2b2b !important; color:#fff !important; box-shadow:0 18px 45px rgb(0 0 0 / .12); }
+[data-theme="luxury-light"] .contact-card h3 { color:#fff !important; }
+[data-theme="luxury-light"] .contact-card p { color:#cfcfcf !important; }
+[data-theme="luxury-light"] h1, [data-theme="luxury-light"] h2, [data-theme="luxury-light"] h3, [data-theme="luxury-light"] h4 { color:#171717; }
+[data-theme="luxury-light"] .offering-card h4, [data-theme="luxury-light"] .offering-card .offering-title { color:#fff !important; }
+[data-theme="luxury-light"] .offerings-section .offering-card { background:#171717 !important; border-color:#2b2b2b !important; }
+
+
+/* Scroll-aware borderless navbar: border appears only after scrolling. */
+[data-theme="luxury-light"] header { background: rgba(255,255,255,.92) !important; color: #171717 !important; box-shadow: none !important; }
+[data-theme="luxury-light"] header nav { background: transparent !important; box-shadow: none !important; }
+[data-theme="luxury-light"] header .text-white { color: #24211f !important; }
+[data-theme="luxury-light"] header .hover\:bg-yellow-500\/10:hover { background-color: rgb(230 0 120 / .06) !important; }
+[data-theme="luxury-light"] header.border-b.border-black\/10 { border-bottom-color: rgb(58 50 43 / .16) !important; }
+
+/* Keep category cards image-first and avoid forced cropping of stone objects. */
+.product-image-safe img { object-fit: contain !important; }
+
+/* Visual-first services showcase */
+.services-showcase h2 { text-wrap: balance; }
+[data-theme="luxury-light"] .services-showcase { background: #f8f7f4 !important; color: #171717 !important; }
+[data-theme="luxury-light"] .services-showcase .border-zinc-800 { border-color: #dedbd5 !important; }
+[data-theme="luxury-light"] .services-showcase .bg-zinc-950 { background: #fff !important; }
+[data-theme="luxury-light"] .services-showcase .bg-zinc-900 { background: #eeeae4 !important; }
+
+
+/* Final UX polish: keep Luxury Light genuinely light across hard-coded page wrappers. */
+[data-theme="luxury-light"] main,
+[data-theme="luxury-light"] main.bg-black {
+  background: #f8f7f4 !important;
+  color: #171717 !important;
+}
+[data-theme="luxury-light"] main > section.bg-black {
+  background: #f8f7f4 !important;
+  color: #171717 !important;
+}
+[data-theme="luxury-light"] header {
+  background: rgba(255,255,255,.94) !important;
+}
+[data-theme="luxury-light"] header.border-b.border-black\/10 {
+  border-bottom-color: rgba(58,50,43,.16) !important;
+}
+[data-theme="luxury-light"] header.border-b.border-transparent {
+  border-bottom-color: transparent !important;
+}
+[data-theme="luxury-light"] header .text-white {
+  color: #24211f !important;
+}
+[data-theme="luxury-light"] header .text-pink-500 {
+  color: #b8860b !important;
+}
+[data-theme="luxury-light"] header .bg-black\/95,
+[data-theme="luxury-light"] header .bg-black\/80 {
+  background: transparent !important;
+}
+[data-theme="luxury-light"] .home-final-cta {
+  background: #171717 !important;
+  color: #fff !important;
+}
+[data-theme="luxury-light"] .home-final-cta h2 {
+  color: #fff !important;
+}
+[data-theme="luxury-light"] .home-final-cta p {
+  color: #b8860b !important;
+}
