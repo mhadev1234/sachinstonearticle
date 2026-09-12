@@ -1,0 +1,181 @@
+ {
+  "Navbar": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "products": "Produits",
+    "gallery": "Galerie",
+    "reviews": "Avis",
+    "contact": "Contact",
+    "language": "Langue",
+    "getQuote": "Obtenir un devis"
+  },
+
+  "Hero": {
+    "welcome": "Créer une beauté intemporelle",
+    "brand": "SACHIN",
+    "brandSub": "STONE & ARTICLE",
+    "tagline": "Là où la pierre devient art",
+    "description": "Nous transformons la pierre naturelle en créations intemporelles alliant art, élégance et savoir-faire. Chaque réalisation est soigneusement conçue avec précision, passion et souci du détail.",
+    "quote": "Obtenir un devis gratuit",
+    "whatsapp": "WhatsApp",
+    "years": "Ans",
+    "craftsmanship": "Savoir-faire",
+    "excellence": "Excellence",
+    "discover": "Découvrir plus"
+  },
+
+  "About": {
+    "heading": "À propos de l'entreprise",
+    "yearsExperience": "Ans d'expérience",
+    "titleFirst": "Créer une",
+    "titleHighlight": " architecture en pierre",
+    "titleLast": "premium",
+    "description": "Sachin Stone and Article est une entreprise de pierre artisanale basée au Rajasthan, spécialisée dans les travaux de pierre pour temples, les sculptures, les jalis CNC, la fabrication de statues et les projets architecturaux.",
+    "premiumQuality": {
+      "title": "Qualité premium",
+      "description": "Un savoir-faire exceptionnel avec des pierres naturelles de qualité."
+    },
+    "experiencedTeam": {
+      "title": "Équipe expérimentée",
+      "description": "Des artisans qualifiés avec plus de 15 ans d'expérience."
+    },
+    "customDesign": {
+      "title": "Design personnalisé",
+      "description": "Chaque projet est adapté aux exigences du client."
+    },
+    "allIndiaService": {
+      "title": "Service dans toute l'Inde",
+      "description": "Nous proposons nos services de pierre partout en Inde."
+    }
+  },
+
+  "Services": {
+    "heading": "Nos services",
+    "title": "Services de pierre premium",
+    "description": "Nous fournissons des travaux de pierre de qualité supérieure grâce à la technologie moderne et aux savoir-faire traditionnels dans toute l'Inde.",
+    "items": {
+      "temple": {
+        "title": "Travaux de pierre pour temples",
+        "description": "Temples en marbre et en grès de qualité supérieure réalisés avec un savoir-faire traditionnel."
+      },
+      "carving": {
+        "title": "Sculpture sur pierre",
+        "description": "Magnifiques designs en pierre sculptés à la main pour les maisons, hôtels et complexes touristiques."
+      },
+      "cnc": {
+        "title": "Jali en pierre CNC",
+        "description": "Jalis en pierre réalisés avec une grande précision CNC et une finition moderne."
+      },
+      "murti": {
+        "title": "Fabrication de statues",
+        "description": "Statues personnalisées en marbre et en pierre réalisées par des artisans expérimentés."
+      },
+      "hotel": {
+        "title": "Travaux pour hôtels et complexes touristiques",
+        "description": "Travaux architecturaux en pierre haut de gamme pour hôtels et complexes touristiques."
+      },
+      "railway": {
+        "title": "Travaux pour gares ferroviaires",
+        "description": "Projets professionnels en pierre pour les gares ferroviaires et les espaces publics."
+      },
+      "cutting": {
+        "title": "Découpe de pierre",
+        "description": "Découpe de pierre de précision pour temples, projets architecturaux, jalis en pierre et travaux personnalisés grâce à des technologies modernes."
+      }
+    }
+  },
+
+  "Gallery": {
+    "portfolio": "Portfolio",
+    "heading": "Notre galerie",
+    "description": "Découvrez nos travaux de pierre pour temples, sculptures, jalis CNC, statues en marbre et projets architecturaux.",
+    "loading": "Chargement de la galerie...",
+    "empty": "Aucune image disponible.",
+    "viewMore": "Voir plus"
+  },
+
+  "WhyChooseUs": {
+    "heading": "Pourquoi nous choisir",
+    "titleFirst": "Pourquoi les clients",
+    "titleHighlight": " nous font confiance",
+    "description": "Nous associons l'artisanat traditionnel aux technologies modernes pour créer des travaux de pierre durables.",
+    "features": {
+      "experience": {
+        "title": "Plus de 15 ans d'expérience",
+        "description": "Un savoir-faire reconnu avec de nombreuses années d'expérience."
+      },
+      "quality": {
+        "title": "Qualité premium",
+        "description": "Nous utilisons les meilleures pierres naturelles avec une finition parfaite."
+      },
+      "custom": {
+        "title": "Designs personnalisés",
+        "description": "Chaque projet est conçu selon les besoins du client."
+      },
+      "india": {
+        "title": "Service dans toute l'Inde",
+        "description": "Nous réalisons des projets dans toute l'Inde."
+      },
+      "cnc": {
+        "title": "Technologie CNC moderne",
+        "description": "Solutions de découpe et de sculpture CNC de haute précision."
+      },
+      "delivery": {
+        "title": "Livraison à temps",
+        "description": "Nous respectons votre temps et terminons les projets dans les délais."
+      }
+    }
+  },
+
+  "Review": {
+    "heading": "Donnez votre avis",
+    "description": "Partagez votre expérience avec Sachin Stone & Article",
+    "rating": "Évaluation",
+    "name": "Votre nom",
+    "message": "Votre avis",
+    "submit": "Envoyer l'avis",
+    "submitting": "Envoi...",
+    "customerReviews": "Avis des clients",
+    "viewMore": "Voir plus d'avis"
+  },
+
+  "Contact": {
+    "heading": "Contactez-nous",
+    "titleFirst": "Construisons votre",
+    "titleHighlight": "projet de rêve",
+    "description": "Contactez-nous pour vos travaux de pierre de temple, sculpture, jali CNC, statues et projets architecturaux.",
+    "call": "Appelez-nous",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "location": "Emplacement",
+    "openMaps": "Ouvrir dans Google Maps →"
+  },
+
+  "Enquiry": {
+    "heading": "Obtenir un devis",
+    "titleFirst": "Envoyez votre",
+    "titleHighlight": "demande",
+    "description": "Partagez les détails de votre projet et notre équipe vous contactera rapidement.",
+    "name": "Votre nom",
+    "phone": "Numéro de téléphone",
+    "email": "Adresse e-mail",
+    "location": "Lieu du projet",
+    "message": "Parlez-nous de votre projet...",
+    "submit": "Envoyer la demande",
+    "submitting": "Envoi...",
+    "success": "Merci ! Votre demande a été envoyée avec succès."
+  },
+
+  "GoogleMap": {
+    "heading": "Notre emplacement"
+  },
+
+  "Footer": {
+    "services": "Nos services",
+    "contact": "Contact",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions générales",
+    "rights": "Tous droits réservés."
+  }
+}

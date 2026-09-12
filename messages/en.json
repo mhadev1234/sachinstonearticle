@@ -1,0 +1,181 @@
+ {
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "language": "Language",
+    "getQuote": "Get Free Quote"
+  },
+
+  "Hero": {
+    "welcome": "Crafting Timeless Beauty",
+    "brand": "SACHIN",
+    "brandSub": "STONE & ARTICLE",
+    "tagline": "Where Stone Becomes Art",
+    "description": "We transform natural stone into timeless expressions of art, elegance and exceptional craftsmanship. Every creation is crafted with precision, passion and attention to detail.",
+    "quote": "Get Free Quote",
+    "whatsapp": "WhatsApp Now",
+    "years": "Years",
+    "craftsmanship": "Craftsmanship",
+    "excellence": "Excellence",
+    "discover": "Discover More"
+  },
+
+  "About": {
+    "heading": "About Our Company",
+    "yearsExperience": "Years Experience",
+    "titleFirst": "Creating",
+    "titleHighlight": " Premium Stone",
+    "titleLast": "Architecture",
+    "description": "Sachin Stone and Article is an experienced stone craftsmanship company based in Rajasthan, India. We specialize in Temple Stone Work, CNC Stone Jali, Murti Making, Stone Carving, Stone Cutting, Hotel & Resort Projects and Railway Station Work. With 15+ years of experience, we provide high-quality stone craftsmanship services across India.",
+    "premiumQuality": {
+      "title": "Premium Quality",
+      "description": "Premium natural stone with excellent craftsmanship."
+    },
+    "experiencedTeam": {
+      "title": "Experienced Team",
+      "description": "Skilled artisans with 15+ years of experience."
+    },
+    "customDesign": {
+      "title": "Custom Designs",
+      "description": "Every project is created according to customer requirements."
+    },
+    "allIndiaService": {
+      "title": "All India Service",
+      "description": "We provide stone work services across India."
+    }
+  },
+
+  "Services": {
+    "heading": "Our Services",
+    "title": "Premium Stone Services",
+    "description": "We deliver premium quality stone craftsmanship with modern technology and traditional skills across India.",
+    "items": {
+      "temple": {
+        "title": "Temple Stone Work",
+        "description": "Premium marble and sandstone temples with traditional craftsmanship."
+      },
+      "carving": {
+        "title": "Stone Carving",
+        "description": "Beautiful hand carved stone designs for homes, hotels and resorts."
+      },
+      "cnc": {
+        "title": "CNC Stone Jali",
+        "description": "High precision CNC stone jali with modern finishing."
+      },
+      "murti": {
+        "title": "Murti Making",
+        "description": "Custom marble and stone statues crafted by experienced artisans."
+      },
+      "hotel": {
+        "title": "Hotel & Resort Work",
+        "description": "Luxury architectural stone work for hotels and resorts."
+      },
+      "railway": {
+        "title": "Railway Station Work",
+        "description": "Professional stone projects for railway stations and public places."
+      },
+      "cutting": {
+        "title": "Stone Cutting",
+        "description": "Precision stone cutting for temples, architectural projects, stone jali and custom stone work using modern cutting technology."
+      }
+    }
+  },
+
+  "Gallery": {
+    "portfolio": "Portfolio",
+    "heading": "Our Gallery",
+    "description": "Explore our premium Temple Stone Work, Stone Carving, CNC Stone Jali, Marble Murti and Architectural Stone Projects completed with exceptional craftsmanship across India.",
+    "loading": "Gallery is loading...",
+    "empty": "No gallery available yet.",
+    "viewMore": "View More Gallery"
+  },
+
+  "WhyChooseUs": {
+    "heading": "Why Choose Us",
+    "titleFirst": "Why Customers",
+    "titleHighlight": " Trust Us",
+    "description": "We combine traditional craftsmanship with modern technology to deliver premium stone work that lasts for generations.",
+    "features": {
+      "experience": {
+        "title": "15+ Years Experience",
+        "description": "Trusted stone craftsmanship with years of industry experience."
+      },
+      "quality": {
+        "title": "Premium Quality",
+        "description": "We use the finest quality natural stone with perfect finishing."
+      },
+      "custom": {
+        "title": "Custom Designs",
+        "description": "Every project is designed according to customer requirements."
+      },
+      "india": {
+        "title": "All India Service",
+        "description": "We successfully complete projects across India."
+      },
+      "cnc": {
+        "title": "Latest CNC Technology",
+        "description": "High precision CNC stone cutting and carving solutions."
+      },
+      "delivery": {
+        "title": "On-Time Delivery",
+        "description": "We value your time and complete projects on schedule."
+      }
+    }
+  },
+
+  "Review": {
+    "heading": "Give Your Review",
+    "description": "Share your experience with Sachin Stone & Article",
+    "rating": "Rating",
+    "name": "Your Name",
+    "message": "Your Review",
+    "submit": "Submit Review",
+    "submitting": "Submitting...",
+    "customerReviews": "Customer Reviews",
+    "viewMore": "View More Reviews"
+  },
+
+  "Contact": {
+    "heading": "Contact Us",
+    "titleFirst": "Let's Build Your",
+    "titleHighlight": " Dream Project",
+    "description": "Contact us for Temple Stone Work, Stone Carving, CNC Jali, Murti Making and Architectural Stone Projects.",
+    "call": "Call Us",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "location": "Location",
+    "openMaps": "Open in Google Maps →"
+  },
+
+  "Enquiry": {
+    "heading": "Get Quote",
+    "titleFirst": "Send Your",
+    "titleHighlight": " Enquiry",
+    "description": "Share your project details and our team will contact you soon.",
+    "name": "Your Name",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "location": "Project Location",
+    "message": "Tell us about your project...",
+    "submit": "Submit Enquiry",
+    "submitting": "Submitting...",
+    "success": "Thank you! Your enquiry has been submitted successfully."
+  },
+
+  "GoogleMap": {
+    "heading": "Our Location"
+  },
+
+  "Footer": {
+    "services": "Our Services",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "rights": "All Rights Reserved."
+  }
+}
